@@ -9,12 +9,12 @@ class Area extends Model
     protected $table = 'areas';
     protected $primaryKey = 'id_area';
 
-    public function getHabitaciones()
+    public function habitaciones()
     {
         return $this->hasMany('App\Habitacion', 'id_habitacion');
     }
 
-    public function belongsToCentro()
+    public function centro()
     {
         return $this->belongsTo('App\Centro', 'id_centro');
     }

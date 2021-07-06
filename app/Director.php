@@ -9,7 +9,7 @@ class Director extends Persona
     protected $table = 'directores';
     protected $primaryKey = 'id_director';
 
-    public function directsCenter()
+    public function dirige()
     {
         return $this->belongsTo('App\Center', 'id_centro');
     }

@@ -9,12 +9,12 @@ class Paciente extends Model
     protected $table = 'pacientes';
     protected $primaryKey = 'id_paciente';
 
-    public function belongsToHabitacion()
+    public function habitacion()
     {
         return $this->belongsTo('App\Habitacion', 'id_habitacion');
     }
 
-    public function getPersona(){
+    public function persona(){
         return $this->morphOne('Persona', 'personable', $type = 'tipo_persona', $id = 'id_persona');
     }
 

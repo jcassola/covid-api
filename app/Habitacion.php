@@ -9,12 +9,12 @@ class Habitacion extends Model
     protected $table = 'habitaciones';
     protected $primaryKey = 'id_habitacion';
 
-    public function getPacientes()
+    public function pacientes()
     {
         return $this->hasMany('App\Paciente', 'id_habitacion');
     }
 
-    public function belongsToArea()
+    public function area()
     {
         return $this->belongsTo('App\Area', 'id_area');
     }
