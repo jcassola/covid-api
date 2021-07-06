@@ -14,7 +14,11 @@ class CreateCentrosTable extends Migration
     public function up()
     {
         Schema::create('centros', function (Blueprint $table) {
-            $table->bigIncrements('id_centro');
+            $table->bigIncrements('id_centro')->autoIncrement();
+            $table->string('nombre_centro', 100);
+            $table->string('municipio', 100);
+            $table->string('organismo', 100);
+            // $table->string('categoria', 100)->nullable($value = true);
             $table->timestamps();
         });
     }
