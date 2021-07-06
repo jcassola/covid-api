@@ -13,9 +13,12 @@ class CreateHabitacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('habitacions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('habitaciones', function (Blueprint $table) {
+            $table->bigIncrements('id_habitacion');
             $table->timestamps();
+
+            $table->foreign('id_area')->references('id_area')->on('areas');
+
         });
     }
 
@@ -26,6 +29,6 @@ class CreateHabitacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habitacions');
+        Schema::dropIfExists('habitaciones');
     }
 }

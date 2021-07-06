@@ -13,9 +13,12 @@ class CreateDirectorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('directors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('directores', function (Blueprint $table) {
+            $table->bigIncrements('id_director');
             $table->timestamps();
+
+            $table->foreign('id_centro')->references('id_centro')->on('centros');
+
         });
     }
 
@@ -26,6 +29,6 @@ class CreateDirectorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('directors');
+        Schema::dropIfExists('directores');
     }
 }
