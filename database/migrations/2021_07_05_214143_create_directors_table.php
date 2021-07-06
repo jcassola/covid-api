@@ -15,6 +15,7 @@ class CreateDirectorsTable extends Migration
     {
         Schema::create('directores', function (Blueprint $table) {
             $table->bigIncrements('id_director');
+            $table->unsignedBigInteger('id_centro');
             $table->timestamps();
 
             $table->foreign('id_centro')->references('id_centro')->on('centros');

@@ -15,6 +15,7 @@ class CreateHabitacionsTable extends Migration
     {
         Schema::create('habitaciones', function (Blueprint $table) {
             $table->bigIncrements('id_habitacion');
+            $table->unsignedBigInteger('id_area');
             $table->timestamps();
 
             $table->foreign('id_area')->references('id_area')->on('areas');
