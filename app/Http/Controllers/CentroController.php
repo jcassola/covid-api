@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use App\Centro;
+use App\Http\Resources\AreaResource;
 use App\Http\Resources\AreaResourceCollection;
 use App\Http\Resources\CentroResource;
 use App\Http\Resources\CentroResourceCollection;
@@ -104,13 +105,15 @@ class CentroController extends Controller
      */
     public function areas(Centro $centro)
     {
-        $areas = $centro->areas;
+        $areas = $centro->areas()->paginate(10);
         if(count($areas) > 0){
             return response()->json(['message'=>'Success',
-                                    'areas'=>new AreaResourceCollection($areas)],
+                                    'areas'=>$areas],
                                     200);
         }
-            return response()->json(['message'=>'El centro no tiene áreas','areas'=>null],200);
+            return response()->json(['message'=>'El centro no tiene áreas',
+                                'areas'=>null],
+                                200);
 
     }
         /**
@@ -128,7 +131,9 @@ class CentroController extends Controller
                                     'director'=>new DirectorResource($director)],
                                     200);
         }
-            return response()->json(['message'=>'El centro no tiene director','director'=>null],200);
+            return response()->json(['message'=>'El centro no tiene director',
+                                    'director'=>null],
+                                    200);
 
     }
 }
