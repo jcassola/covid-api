@@ -23,6 +23,7 @@ class CreateAreasTable extends Migration
             $table->foreign('id_centro')
                 ->references('id_centro')
                 ->on('centros')
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
 
         });
