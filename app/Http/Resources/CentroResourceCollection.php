@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CentroResourceCollection extends ResourceCollection
 {
+    public static $wrap = 'centros';
+
     /**
      * Transform the resource collection into an array.
      *
