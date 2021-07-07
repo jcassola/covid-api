@@ -18,3 +18,4 @@ use Illuminate\Http\Request;
 // });
 
 Route::apiResource('centros', 'CentroController');
+Route::apiResource('centros', 'AreaController');
