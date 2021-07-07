@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use App\Centro;
+use App\Http\Resources\AreaResourceCollection;
 use App\Http\Resources\CentroResource;
 use App\Http\Resources\CentroResourceCollection;
+use App\Http\Resources\DirectorResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,15 +40,15 @@ class CentroController extends Controller
         ]);
 
         if($validator->fails()){
-            return response(['error' => $validator->errors(),
-            'Hay datos incorrectos']);
+            return response()->json(['error' => $validator->errors(),
+                                'Hay datos incorrectos']);
         }
 
         $centro = Centro::create($data);
 
-        return response([ 'centro' => new
-        CentroResource($centro),
-        'message' => 'Centro registrado'], 200);
+        return response()->json([ 'centro' => new CentroResource($centro),
+                            'message' => 'Centro registrado'],
+                            200);
     }
 
 
@@ -57,8 +60,9 @@ class CentroController extends Controller
      */
     public function show(Centro $centro)
     {
-        return response([ 'centro' => new
-        CentroResource($centro), 'message' => 'Success'], 200);
+        return response()->json([ 'centro' => new
+                    CentroResource($centro), 'message' => 'Success'],
+                    200);
     }
 
     /**
@@ -72,8 +76,8 @@ class CentroController extends Controller
     {
         $centro->update($request->all());
 
-        return response([ 'centro' => new
-        CentroResource($centro), 'message' => 'Centro Actualizado'], 200
+        return response()->json([ 'centro' => new CentroResource($centro),
+                        'message' => 'Centro Actualizado'], 200
         );
     }
 
@@ -87,6 +91,44 @@ class CentroController extends Controller
     {
         $centro->delete();
 
-        return response(['message' => 'Centro eliminado']);
+        return response()->json([ 'centro' => new CentroResource($centro),
+                                'message' => 'Centro Eliminado'],
+                                200);
+    }
+
+    /**
+     * Return the areas from specified center.
+     *
+     * @param  \App\Centro  $centro
+     * @return \Illuminate\Http\Response
+     */
+    public function areas(Centro $centro)
+    {
+        $areas = $centro->areas;
+        if(count($areas) > 0){
+            return response()->json(['message'=>'Success',
+                                    'areas'=>new AreaResourceCollection($areas)],
+                                    200);
+        }
+            return response()->json(['message'=>'El centro no tiene áreas','areas'=>null],200);
+
+    }
+        /**
+     * Return the director from specified center.
+     *
+     * @param  \App\Centro  $centro
+     * @return \Illuminate\Http\Response
+     */
+
+    public function director(Centro $centro)
+    {
+        $director = $centro->director;
+        if(count($director) > 0){
+            return response()->json(['message'=>'Success',
+                                    'director'=>new DirectorResource($director)],
+                                    200);
+        }
+            return response()->json(['message'=>'El centro no tiene director','director'=>null],200);
+
     }
 }

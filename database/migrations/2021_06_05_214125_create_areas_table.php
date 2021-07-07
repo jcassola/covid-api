@@ -20,7 +20,10 @@ class CreateAreasTable extends Migration
             $table->string('categoria', 100);
             $table->timestamps();
 
-            $table->foreign('id_centro')->references('id_centro')->on('centros');
+            $table->foreign('id_centro')
+                ->references('id_centro')
+                ->on('centros')
+                ->onDelete('cascade');
 
         });
     }
