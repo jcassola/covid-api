@@ -13,9 +13,20 @@ class CreatePacienteIngresadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('paciente_ingresados', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pacientes_ingresados', function (Blueprint $table) {
+            $table->bigIncrements('id_paciente')->autoIncrement();
+            $table->unsignedBigInteger('id_habitacion');
+            $table->dateTime('fecha_ingreso');
+            $table->dateTime('fecha_alta');
+            $table->boolean('estado_ingreso')->default(1);
             $table->timestamps();
+
+            $table->foreign('id_habitacion')
+                ->references('id_habitacion')
+                ->on('habitaciones')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
         });
     }
 

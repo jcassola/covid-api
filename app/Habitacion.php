@@ -11,7 +11,7 @@ class Habitacion extends Model
 
     public function pacientes()
     {
-        return $this->hasMany('App\Paciente', 'id_habitacion');
+        return $this->hasMany('App\PacienteIngresado', 'id_habitacion');
     }
 
     public function area()
