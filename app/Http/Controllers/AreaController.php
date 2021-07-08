@@ -101,4 +101,23 @@ class AreaController extends Controller
                                 'message' => 'Área Eliminada'],
                                 200);
     }
+
+    /**
+     * Return the habitaciones from specified area.
+     *
+     * @param  \App\Area $area
+     * @return \Illuminate\Http\Response
+     */
+    public function habitaciones(Area $area)
+    {
+        $habitaciones = $area->habitaciones()->paginate(10);
+        // if(count($habitaciones) > 0){
+            return response()->json(['message'=>'Success',
+                                    'habitaciones'=>$habitaciones],
+                                    200);
+    //     }
+    //         return response()->json(['message'=>'El área no tiene habitaciones',
+    //                             'habitaciones'=>null],
+    //                             200);
+    }
 }

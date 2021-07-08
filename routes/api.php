@@ -21,3 +21,7 @@ Route::apiResource('centros', 'CentroController');
 Route::get('/centros/{centro}/areas', 'CentroController@areas');
 Route::get('/centros/{centro}/director', 'CentroController@director'); //test this!
 Route::apiResource('areas', 'AreaController');
+Route::get('/areas/{area}/habitaciones', 'AreaController@habitaciones');
+Route::apiResource('habitaciones', 'HabitacionController');
+
+

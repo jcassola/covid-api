@@ -109,10 +109,9 @@ class CentroController extends Controller
                                     'areas'=>$areas],
                                     200);
         }
-            return response()->json(['message'=>'El centro no tiene áreas',
-                                'areas'=>null],
-                                200);
-
+        return response()->json(['message'=>'El centro no tiene áreas',
+                            'areas'=>null],
+                            200);
     }
         /**
      * Return the director from specified center.

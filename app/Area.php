@@ -16,7 +16,7 @@ class Area extends Model
 
     public function habitaciones()
     {
-        return $this->hasMany('App\Habitacion', 'id_habitacion');
+        return $this->hasMany('App\Habitacion', 'id_area');
     }
 
     public function centro()
