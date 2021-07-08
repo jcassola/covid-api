@@ -18,7 +18,7 @@ class CreateHabitacionsTable extends Migration
             $table->unsignedBigInteger('id_area');
             $table->string('nombre', 100);
             $table->integer('capacidad');
-            $table->integer('en_usp');
+            $table->integer('en_uso');
             $table->boolean('disponible')->default(1);
             $table->timestamps();
 
