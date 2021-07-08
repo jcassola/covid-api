@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
+
 use App\Centro;
-use App\Http\Resources\AreaResource;
-use App\Http\Resources\AreaResourceCollection;
 use App\Http\Resources\CentroResource;
 use App\Http\Resources\CentroResourceCollection;
 use App\Http\Resources\DirectorResource;

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\Centro;
+use App\Http\Resources\AreaResource;
+use App\Http\Resources\AreaResourceCollection;
+use App\Http\Resources\CentroResource;
 use Illuminate\Http\Request;
+use Validator;
 
 class AreaController extends Controller
 {
@@ -14,7 +19,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
+        return new AreaResourceCollection(Area::paginate(10));
+
     }
 
     /**
@@ -25,7 +31,31 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'id_centro' => 'required',
+            'nombre' => 'required|unique:areas',
+            'categoria' => 'required|',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors(),
+                                'Hay datos incorrectos']);
+        }
+
+        $centro = Centro::find($data['id_centro']);
+
+        $area = new Area();
+        $area->nombre = $data['nombre'];
+        $area->categoria = $data['categoria'];
+
+        $area->centro()->associate($centro)->save();
+
+
+        return response()->json([ 'area' => new AreaResource($area),
+                            'message' => 'Area registrada'],
+                            200);
     }
 
     /**
@@ -36,7 +66,9 @@ class AreaController extends Controller
      */
     public function show(Area $area)
     {
-        //
+        return response()->json([ 'area' => new
+                        AreaResource($area), 'message' => 'Success'],
+                        200);
     }
 
     /**
@@ -48,7 +80,11 @@ class AreaController extends Controller
      */
     public function update(Request $request, Area $area)
     {
-        //
+        $area->update($request->all());
+
+        return response()->json([ 'area' => new AreaResource($area),
+                        'message' => 'Area Actualizada'], 200
+        );
     }
 
     /**
@@ -59,6 +95,10 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
-        //
+        $area->delete();
+
+        return response()->json([ 'centro' => new CentroResource($area),
+                                'message' => 'Área Eliminada'],
+                                200);
     }
 }

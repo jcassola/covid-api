@@ -9,6 +9,11 @@ class Area extends Model
     protected $table = 'areas';
     protected $primaryKey = 'id_area';
 
+    protected $fillable = [
+        'nombre',
+        'categoria'
+    ];
+
     public function habitaciones()
     {
         return $this->hasMany('App\Habitacion', 'id_habitacion');
