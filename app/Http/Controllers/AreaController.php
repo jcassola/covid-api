@@ -111,13 +111,13 @@ class AreaController extends Controller
     public function habitaciones(Area $area)
     {
         $habitaciones = $area->habitaciones()->paginate(10);
-        // if(count($habitaciones) > 0){
+        if(count($habitaciones) > 0){
             return response()->json(['message'=>'Success',
                                     'habitaciones'=>$habitaciones],
                                     200);
-    //     }
-    //         return response()->json(['message'=>'El área no tiene habitaciones',
-    //                             'habitaciones'=>null],
-    //                             200);
+        }
+            return response()->json(['message'=>'El área no tiene habitaciones',
+                                'habitaciones'=>null],
+                                200);
     }
 }
