@@ -16,5 +16,13 @@ class AreaResourceCollection extends ResourceCollection
     public function toArray($request)
     {
         return parent::toArray($request);
+        // return[
+        // 'count' => $this->count(),
+        // 'total' => $this->total(),
+        // 'prev'  => $this->previousPageUrl(),
+        // 'next'  => $this->nextPageUrl(),
+
+        // 'areas' => $this->collection
+        // ];
     }
 }

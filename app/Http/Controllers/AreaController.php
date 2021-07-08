@@ -97,7 +97,7 @@ class AreaController extends Controller
     {
         $area->delete();
 
-        return response()->json([ 'centro' => new CentroResource($area),
+        return response()->json([ 'area' => new AreaResource($area),
                                 'message' => 'Área Eliminada'],
                                 200);
     }
