@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use App\Habitacion;
+use App\Http\Resources\HabitacionResource;
 use App\Http\Resources\HabitacionResourceCollection;
 use Illuminate\Http\Request;
+use Validator;
 
 class HabitacionController extends Controller
 {
@@ -26,7 +29,35 @@ class HabitacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'id_area' => 'required',
+            'nombre' => 'required|unique:habitaciones',
+            'capacidad' => 'required|',
+            'en_uso' => 'required|',
+            'disponible' => 'required|',
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors(),
+                                'Hay datos incorrectos']);
+        }
+
+        $area = Area::find($data['id_area']);
+
+        $habitacion = new Habitacion();
+        $habitacion->nombre = $data['nombre'];
+        $habitacion->capacidad = $data['capacidad'];
+        $habitacion->en_uso = $data['en_uso'];
+        $habitacion->disponible = $data['disponible'];
+
+        $habitacion->area()->associate($area)->save();
+
+
+        return response()->json([ 'habitacion' => new HabitacionResource($habitacion),
+                            'message' => 'Habitacion registrada'],
+                            200);
     }
 
     /**
@@ -37,7 +68,9 @@ class HabitacionController extends Controller
      */
     public function show(Habitacion $habitacion)
     {
-        //
+        return response()->json([ 'habitacion' => new
+                        HabitacionResource($habitacion), 'message' => 'Success'],
+                        200);
     }
 
     /**
@@ -49,7 +82,11 @@ class HabitacionController extends Controller
      */
     public function update(Request $request, Habitacion $habitacion)
     {
-        //
+        $habitacion->update($request->all());
+
+        return response()->json([ 'habitacion' => new HabitacionResource($habitacion),
+                        'message' => 'Habitacion Actualizada'], 200
+        );
     }
 
     /**
@@ -60,6 +97,10 @@ class HabitacionController extends Controller
      */
     public function destroy(Habitacion $habitacion)
     {
-        //
+        $habitacion->delete();
+
+        return response()->json([ 'habitacion' => new HabitacionResource($habitacion),
+                                'message' => 'Habitacion Eliminada'],
+                                200);
     }
 }

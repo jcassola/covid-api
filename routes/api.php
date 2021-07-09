@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HabitacionController;
 use Illuminate\Http\Request;
 
 /*
@@ -17,11 +18,21 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+// Centro routes
 Route::apiResource('centros', 'CentroController');
 Route::get('/centros/{centro}/areas', 'CentroController@areas');
 Route::get('/centros/{centro}/director', 'CentroController@director'); //test this!
+
+// Area routes
 Route::apiResource('areas', 'AreaController');
 Route::get('/areas/{area}/habitaciones', 'AreaController@habitaciones');
-Route::apiResource('habitaciones', 'HabitacionController');
+
+
+// Habitacion routes - Puesto manual porque el resource recibe habitacione en vez de habitaciones
+Route::get('/habitaciones', 'HabitacionController@index');
+Route::post('/habitaciones', 'HabitacionController@store');
+Route::get('/habitaciones/{habitacion}', 'HabitacionController@show');
+Route::put('/habitaciones/{habitacion}', 'HabitacionController@update');
+Route::delete('/habitaciones/{habitacion}', 'HabitacionController@destroy');
 
 
