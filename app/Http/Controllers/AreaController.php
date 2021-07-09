@@ -7,6 +7,7 @@ use App\Centro;
 use App\Http\Resources\AreaResource;
 use App\Http\Resources\AreaResourceCollection;
 use App\Http\Resources\CentroResource;
+use App\Http\Resources\HabitacionResourceCollection;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -112,9 +113,8 @@ class AreaController extends Controller
     {
         $habitaciones = $area->habitaciones()->paginate(10);
         if(count($habitaciones) > 0){
-            return response()->json(['message'=>'Success',
-                                    'habitaciones'=>$habitaciones],
-                                    200);
+            $habitaciones_collection = new HabitacionResourceCollection($habitaciones);
+            return $habitaciones_collection->additional(['message'=>'Success'], 200);
         }
             return response()->json(['message'=>'El área no tiene habitaciones',
                                 'habitaciones'=>null],
