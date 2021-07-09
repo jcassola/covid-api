@@ -26,6 +26,7 @@ Route::get('/centros/{centro}/director', 'CentroController@director'); //test th
 // Area routes
 Route::apiResource('areas', 'AreaController');
 Route::get('/areas/{area}/habitaciones', 'AreaController@habitaciones');
+Route::get('/areas/{area}/habitaciones-disponibles', 'AreaController@habitaciones_disponibles');
 
 
 // Habitacion routes - Puesto manual porque el resource recibe habitacione en vez de habitaciones
@@ -34,5 +35,11 @@ Route::post('/habitaciones', 'HabitacionController@store');
 Route::get('/habitaciones/{habitacion}', 'HabitacionController@show');
 Route::put('/habitaciones/{habitacion}', 'HabitacionController@update');
 Route::delete('/habitaciones/{habitacion}', 'HabitacionController@destroy');
+
+
+// PacientesIngresados routes
+Route::get('/pacientes-ingresados', 'PacienteIngresadoController@index');
+
+
 
 

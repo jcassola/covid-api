@@ -17,7 +17,7 @@ class CreatePacienteIngresadosTable extends Migration
             $table->bigIncrements('id_paciente')->autoIncrement();
             $table->unsignedBigInteger('id_habitacion');
             $table->dateTime('fecha_ingreso');
-            $table->dateTime('fecha_alta');
+            $table->dateTime('fecha_alta')->nullable();
             $table->boolean('estado_ingreso')->default(1);
             $table->timestamps();
 

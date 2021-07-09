@@ -120,4 +120,16 @@ class AreaController extends Controller
                                 'habitaciones'=>null],
                                 200);
     }
+
+    public function habitaciones_disponibles(Area $area)
+    {
+        $habitaciones = $area->habitaciones()->where('disponible', 1)->paginate(10);
+        if(count($habitaciones) > 0){
+            $habitaciones_collection = new HabitacionResourceCollection($habitaciones);
+            return $habitaciones_collection->additional(['message'=>'Success'], 200);
+        }
+            return response()->json(['message'=>'El área no tiene habitaciones disponibles',
+                                'habitaciones'=>null],
+                                200);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PacienteIngresadoResource;
+use App\Http\Resources\PacienteIngresadoResourceCollection;
 use App\PacienteIngresado;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class PacienteIngresadoController extends Controller
      */
     public function index()
     {
-        //
+        return new PacienteIngresadoResourceCollection(PacienteIngresado::paginate(10));
     }
 
     /**
