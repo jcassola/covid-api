@@ -6,6 +6,8 @@ use App\Area;
 use App\Habitacion;
 use App\Http\Resources\HabitacionResource;
 use App\Http\Resources\HabitacionResourceCollection;
+use App\Http\Resources\PacienteIngresadoResourceCollection;
+use App\PacienteIngresado;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -101,6 +103,30 @@ class HabitacionController extends Controller
 
         return response()->json([ 'habitacion' => new HabitacionResource($habitacion),
                                 'message' => 'Habitacion Eliminada'],
+                                200);
+    }
+
+    public function pacientes(Habitacion $habitacion)
+    {
+        $pacientes = $habitacion->pacientes()->paginate(10);
+        if(count($pacientes) > 0){
+            $pacientes_collection = new PacienteIngresadoResourceCollection($pacientes);
+            return $pacientes_collection->additional(['message'=>'Success'], 200);
+        }
+            return response()->json(['message'=>'La habitación no tiene pacientes',
+                                'pacientes'=>null],
+                                200);
+    }
+
+    public function pacientes_ingresados(Habitacion $habitacion)
+    {
+        $pacientes = $habitacion->pacientes()->where('estado_ingreso', 1)->paginate(10);
+        if(count($pacientes) > 0){
+            $pacientes_collection = new PacienteIngresadoResourceCollection($pacientes);
+            return $pacientes_collection->additional(['message'=>'Success'], 200);
+        }
+            return response()->json(['message'=>'La habitación no tiene pacientes ingresados',
+                                'pacientes'=>null],
                                 200);
     }
 }

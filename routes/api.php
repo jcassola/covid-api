@@ -35,6 +35,8 @@ Route::post('/habitaciones', 'HabitacionController@store');
 Route::get('/habitaciones/{habitacion}', 'HabitacionController@show');
 Route::put('/habitaciones/{habitacion}', 'HabitacionController@update');
 Route::delete('/habitaciones/{habitacion}', 'HabitacionController@destroy');
+Route::get('/habitaciones/{habitacion}/pacientes', 'HabitacionController@pacientes');
+Route::get('/habitaciones/{habitacion}/pacientes-ingresados', 'HabitacionController@pacientes_ingresados');
 
 
 // PacientesIngresados routes
