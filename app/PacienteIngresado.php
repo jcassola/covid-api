@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class PacienteIngresado extends Model
 {
     protected $table = 'pacientes_ingresados';
-    protected $primaryKey = 'id_paciente';
+    protected $primaryKey = 'id_ingresado';
 
     protected $fillable = [
         'fecha_ingreso',
-        'fecha_alta',
-        'estado_ingreso'
+        'fecha_alta'
     ];
+
+    public function datos()
+    {
+        return $this->hasOne('App\DatosPaciente', 'id_ingreso');
+    }
 
     public function habitacion()
     {
