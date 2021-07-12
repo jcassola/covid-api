@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DatosPaciente;
+use App\Http\Resources\DatosPacienteResourceCollection;
 use Illuminate\Http\Request;
 
 class DatosPacienteController extends Controller
@@ -14,7 +15,8 @@ class DatosPacienteController extends Controller
      */
     public function index()
     {
-        //
+        return new DatosPacienteResourceCollection(DatosPaciente::paginate(10));
+
     }
 
     /**
