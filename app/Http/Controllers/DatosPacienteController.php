@@ -61,18 +61,9 @@ class DatosPacienteController extends Controller
      */
     public function show(DatosPaciente $datosPaciente)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\DatosPaciente  $datosPaciente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DatosPaciente $datosPaciente)
-    {
-        //
+        return response()->json([ 'paciente' => new
+                        DatosPacienteResource($datosPaciente), 'message' => 'Success'],
+                        200);
     }
 
     /**
@@ -84,7 +75,11 @@ class DatosPacienteController extends Controller
      */
     public function update(Request $request, DatosPaciente $datosPaciente)
     {
-        //
+        $datosPaciente->update($request->all());
+
+        return response()->json([ 'paciente' => new DatosPacienteResource($datosPaciente),
+                        'message' => 'Datos de paciente actualizados'], 200
+        );
     }
 
     /**
@@ -95,6 +90,10 @@ class DatosPacienteController extends Controller
      */
     public function destroy(DatosPaciente $datosPaciente)
     {
-        //
+        $datosPaciente->delete();
+
+        return response()->json([ 'paciente' => new DatosPacienteResource($datosPaciente),
+                                'message' => 'Paciente Eliminado'],
+                                200);
     }
 }

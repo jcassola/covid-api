@@ -40,17 +40,6 @@ class PacienteAppController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PacienteApp  $pacienteApp
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PacienteApp $pacienteApp)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

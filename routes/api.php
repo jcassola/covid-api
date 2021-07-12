@@ -42,6 +42,12 @@ Route::get('/habitaciones/{habitacion}/ingresados', 'HabitacionController@ingres
 // DatosPacientes routes
 Route::get('/pacientes', 'DatosPacienteController@index');
 Route::post('/pacientes', 'DatosPacienteController@store');
+Route::get('/pacientes/{datos_paciente}', 'DatosPacienteController@show');
+Route::put('/pacientes/{datos_paciente}', 'DatosPacienteController@update');
+Route::delete('/pacientes/{datos_paciente}', 'DatosPacienteController@destroy');
+
+
+
 
 
 
