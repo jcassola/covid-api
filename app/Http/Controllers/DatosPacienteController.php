@@ -110,12 +110,12 @@ class DatosPacienteController extends Controller
     {
         $app = $datosPaciente->apps;
         if(count($app) > 0){
-            return response()->json([ 'apps' => new
+            return response()->json([ 'app' => new
                             PacienteAppResource($app), 'message' => 'Success'],
                             200);
         }
             return response()->json(['message'=>'El paciente no tiene antecedentes patologicos',
-                                'apps'=>null],
+                                'app'=>null],
                                 200);
     }
 
