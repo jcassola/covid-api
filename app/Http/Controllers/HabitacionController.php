@@ -106,21 +106,9 @@ class HabitacionController extends Controller
                                 200);
     }
 
-    public function pacientes(Habitacion $habitacion)
+    public function ingresados(Habitacion $habitacion)
     {
-        $pacientes = $habitacion->pacientes()->paginate(10);
-        if(count($pacientes) > 0){
-            $pacientes_collection = new PacienteIngresadoResourceCollection($pacientes);
-            return $pacientes_collection->additional(['message'=>'Success'], 200);
-        }
-            return response()->json(['message'=>'La habitación no tiene pacientes',
-                                'pacientes'=>null],
-                                200);
-    }
-
-    public function pacientes_ingresados(Habitacion $habitacion)
-    {
-        $pacientes = $habitacion->pacientes()->where('estado_ingreso', 1)->paginate(10);
+        $pacientes = $habitacion->ingresados()->paginate(10);
         if(count($pacientes) > 0){
             $pacientes_collection = new PacienteIngresadoResourceCollection($pacientes);
             return $pacientes_collection->additional(['message'=>'Success'], 200);
@@ -129,4 +117,16 @@ class HabitacionController extends Controller
                                 'pacientes'=>null],
                                 200);
     }
+
+    // public function pacientes_ingresados(Habitacion $habitacion)
+    // {
+    //     $pacientes = $habitacion->pacientes()->where('estado_ingreso', 1)->paginate(10);
+    //     if(count($pacientes) > 0){
+    //         $pacientes_collection = new PacienteIngresadoResourceCollection($pacientes);
+    //         return $pacientes_collection->additional(['message'=>'Success'], 200);
+    //     }
+    //         return response()->json(['message'=>'La habitación no tiene pacientes ingresados',
+    //                             'pacientes'=>null],
+    //                             200);
+    // }
 }

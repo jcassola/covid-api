@@ -18,7 +18,7 @@ class CreatePacienteIngresadosTable extends Migration
             $table->unsignedBigInteger('id_habitacion');
             $table->dateTime('fecha_ingreso');
             $table->dateTime('fecha_alta')->nullable();
-            $table->boolean('estado_ingreso')->default(1);
+            // $table->boolean('estado_ingreso')->default(1);
             $table->timestamps();
 
             $table->foreign('id_habitacion')

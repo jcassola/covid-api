@@ -16,7 +16,7 @@ class Habitacion extends Model
         'disponible'
     ];
 
-    public function pacientes()
+    public function ingresados()
     {
         return $this->hasMany('App\PacienteIngresado', 'id_habitacion');
     }
