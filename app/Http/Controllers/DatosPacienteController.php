@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DatosPaciente;
+use App\Http\Resources\DatosPacienteResource;
 use App\Http\Resources\DatosPacienteResourceCollection;
 use Illuminate\Http\Request;
+use Validator;
 
 class DatosPacienteController extends Controller
 {
@@ -20,16 +22,6 @@ class DatosPacienteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,7 +29,28 @@ class DatosPacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'nombre' => 'required',
+            'edad' => 'required|',
+            'ci' => 'required|unique:datos_paciente',
+            'sexo' => 'required',
+            'direccion' => 'required|',
+            'municipio' => 'required|',
+            'provincia' => 'required|'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors(),
+                                'message'=> 'Hay datos incorrectos']);
+        }
+
+        $paciente = DatosPaciente::create($data);
+
+        return response()->json([ 'paciente' => new DatosPacienteResource($paciente),
+                            'message' => 'Paciente registrado'],
+                            200);
     }
 
     /**

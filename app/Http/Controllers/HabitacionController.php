@@ -43,7 +43,7 @@ class HabitacionController extends Controller
 
         if($validator->fails()){
             return response()->json(['error' => $validator->errors(),
-                                'Hay datos incorrectos']);
+                                'message'=> 'Hay datos incorrectos']);
         }
 
         $area = Area::find($data['id_area']);

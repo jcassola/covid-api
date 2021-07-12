@@ -39,8 +39,9 @@ Route::get('/habitaciones/{habitacion}/ingresados', 'HabitacionController@ingres
 // Route::get('/habitaciones/{habitacion}/pacientes-ingresados', 'HabitacionController@pacientes_ingresados');
 
 
-// PacientesIngresados routes
-Route::get('/pacientes-ingresados', 'PacienteIngresadoController@index');
+// DatosPacientes routes
+Route::get('/pacientes', 'DatosPacienteController@index');
+Route::post('/pacientes', 'DatosPacienteController@store');
 
 
 

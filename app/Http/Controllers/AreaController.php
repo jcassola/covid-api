@@ -42,7 +42,7 @@ class AreaController extends Controller
 
         if($validator->fails()){
             return response()->json(['error' => $validator->errors(),
-                                'Hay datos incorrectos']);
+                                'message'=> 'Hay datos incorrectos']);
         }
 
         $centro = Centro::find($data['id_centro']);
