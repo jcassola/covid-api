@@ -81,7 +81,11 @@ class PacienteAppController extends Controller
      */
     public function update(Request $request, PacienteApp $pacienteApp)
     {
-        //
+        $pacienteApp->update($request->all());
+
+        return response()->json([ 'app' => new PacienteAppResource($pacienteApp),
+                        'message' => 'Antecedentes patológicos actualizados'], 200
+        );
     }
 
     /**
@@ -92,6 +96,10 @@ class PacienteAppController extends Controller
      */
     public function destroy(PacienteApp $pacienteApp)
     {
-        //
+        $pacienteApp->delete();
+
+        return response()->json([ 'app' => new PacienteAppResource($pacienteApp),
+                                'message' => 'Antecedentes patológicos eliminados'],
+                                200);
     }
 }

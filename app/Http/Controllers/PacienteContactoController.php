@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DatosPaciente;
+use App\Http\Resources\PacienteAppResource;
 use App\Http\Resources\PacienteContactoResource;
 use App\PacienteContacto;
 use Illuminate\Http\Request;
@@ -74,7 +75,11 @@ class PacienteContactoController extends Controller
      */
     public function update(Request $request, PacienteContacto $pacienteContacto)
     {
-        //
+        $pacienteContacto->update($request->all());
+
+        return response()->json([ 'contacto' => new PacienteContactoResource($pacienteContacto),
+                        'message' => 'Contacto actualizados'], 200
+        );
     }
 
     /**
@@ -85,6 +90,10 @@ class PacienteContactoController extends Controller
      */
     public function destroy(PacienteContacto $pacienteContacto)
     {
-        //
+        $pacienteContacto->delete();
+
+        return response()->json([ 'app' => new PacienteContactoResource($pacienteContacto),
+                                'message' => 'Contactos eliminados'],
+                                200);
     }
 }

@@ -86,7 +86,11 @@ class PacienteSintomasController extends Controller
      */
     public function update(Request $request, PacienteSintomas $pacienteSintomas)
     {
-        //
+        $pacienteSintomas->update($request->all());
+
+        return response()->json([ 'sintomas' => new PacienteSintomasResource($pacienteSintomas),
+                        'message' => 'Sintomas actualizados'], 200
+        );
     }
 
     /**
@@ -97,6 +101,10 @@ class PacienteSintomasController extends Controller
      */
     public function destroy(PacienteSintomas $pacienteSintomas)
     {
-        //
+        $pacienteSintomas->delete();
+
+        return response()->json([ 'sintomas' => new PacienteSintomasResource($pacienteSintomas),
+                                'message' => 'Síntomas eliminados'],
+                                200);
     }
 }

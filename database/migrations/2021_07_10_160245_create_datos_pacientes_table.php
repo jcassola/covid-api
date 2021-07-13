@@ -31,7 +31,7 @@ class CreateDatosPacientesTable extends Migration
             $table->string('hospital', 100)->nullable();
             $table->string('estado_salud', 100)->nullable();
             $table->string('estado_sistema', 100)->nullable();
-            $table->boolean('trabajador_salud')->default(0)->nullable();
+            $table->boolean('trabajador_salud')->default(0);
             $table->timestamps();
 
             $table->foreign('id_ingresado')
@@ -39,6 +39,12 @@ class CreateDatosPacientesTable extends Migration
             ->on('pacientes_ingresados')
             ->onUpdate('cascade')
             ->onDelete('cascade');
+
+            // $table->foreign('id_area')
+            // ->references('id_area')
+            // ->on('areas_salud')
+            // ->onUpdate('cascade')
+            // ->onDelete('cascade');
         });
     }
 

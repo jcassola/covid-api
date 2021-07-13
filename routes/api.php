@@ -45,18 +45,26 @@ Route::post('/pacientes', 'DatosPacienteController@store');
 Route::get('/pacientes/{datos_paciente}', 'DatosPacienteController@show');
 Route::put('/pacientes/{datos_paciente}', 'DatosPacienteController@update');
 Route::delete('/pacientes/{datos_paciente}', 'DatosPacienteController@destroy');
-Route::get('/pacientes/{datos_paciente}/app', 'DatosPacienteController@apps');
-Route::get('/pacientes/{datos_paciente}/sintomas', 'DatosPacienteController@sintomas');
-Route::get('/pacientes/{datos_paciente}/contactos', 'DatosPacienteController@contactos');
+Route::get('/pacientes/apps', 'DatosPacienteController@apps');
+Route::get('/pacientes/sintomas', 'DatosPacienteController@sintomas');
+Route::get('/pacientes/contacto', 'DatosPacienteController@contactos');
 
 //PacienteApp routes
-Route::post('/pacientes/{datos_paciente}/app', 'PacienteAppController@store');
+Route::post('/pacientes/app', 'PacienteAppController@store');
+Route::put('/pacientes/app/{paciente_app}', 'PacienteAppController@update');
+Route::delete('/pacientes/app/{paciente_app}', 'PacienteAppController@destroy');
+
+
 
 //PacienteContacto routes
-Route::post('/pacientes/{datos_paciente}/contacto', 'PacienteContactoController@store');
+Route::post('/pacientes/contacto', 'PacienteContactoController@store');
+Route::put('/pacientes/contacto/{paciente_contacto}', 'PacienteContactoController@update');
+Route::delete('/pacientes/contacto/{paciente_contacto}', 'PacienteContactoController@destroy');
 
 //PacienteSintomas routes
-Route::post('/pacientes/{datos_paciente}/sintomas', 'PacienteSintomasController@store');
+Route::post('/pacientes/sintomas', 'PacienteSintomasController@store');
+Route::put('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@update');
+Route::delete('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
 
 
 
