@@ -45,9 +45,9 @@ Route::post('/pacientes', 'DatosPacienteController@store');
 Route::get('/pacientes/{datos_paciente}', 'DatosPacienteController@show');
 Route::put('/pacientes/{datos_paciente}', 'DatosPacienteController@update');
 Route::delete('/pacientes/{datos_paciente}', 'DatosPacienteController@destroy');
-Route::get('/pacientes/{datos_paciente}/app', 'HabitacionController@apps');
-Route::get('/pacientes/{datos_paciente}/sintomas', 'HabitacionController@sintomas');
-Route::get('/pacientes/{datos_paciente}/contactos', 'HabitacionController@contactos');
+Route::get('/pacientes/{datos_paciente}/app', 'DatosPacienteController@apps');
+Route::get('/pacientes/{datos_paciente}/sintomas', 'DatosPacienteController@sintomas');
+Route::get('/pacientes/{datos_paciente}/contactos', 'DatosPacienteController@contactos');
 
 
 
