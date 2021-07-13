@@ -29,9 +29,11 @@ class AuthController extends ResponseController
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         if($user){
+            $success['user'] = $user;
             $success['token'] =  $user->createToken('token')->accessToken;
             $success['message'] = "Registration successfull.";
             return $this->sendResponse($success);
+            // return response([ 'user' => $user, 'token' => $token]);
         }
         else{
             $error = "Sorry! Registration is not successfull.";
@@ -58,7 +60,9 @@ class AuthController extends ResponseController
             return $this->sendError($error, 401);
         }
         $user = $request->user();
+        $success['user'] = $user;
         $success['token'] =  $user->createToken('token')->accessToken;
+        $success['message'] = 'Login Successful';
         return $this->sendResponse($success);
     }
 
