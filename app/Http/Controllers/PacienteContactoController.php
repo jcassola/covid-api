@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DatosPaciente;
 use App\Http\Resources\PacienteContactoResource;
 use App\PacienteContacto;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class PacienteContactoController extends Controller
         //                         'message'=> 'Hay datos incorrectos']);
         // }
 
-        $paciente = PacienteContacto::find($data['id_paciente']);
+        $paciente = DatosPaciente::find($data['id_paciente']);
 
         $contacto = new PacienteContacto();
         $contacto->fecha_contacto = $data['fecha_contacto'];
