@@ -18,9 +18,21 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+//Security routes
+Route::group([ 'prefix' => 'auth'], function (){
+    Route::group(['middleware' => ['guest:api']], function () {
+        Route::post('login', 'APISecurity\AuthController@login');
+        Route::post('signup', 'APISecurity\AuthController@signup');
+    });
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('logout', 'APISecurity\AuthController@logout');
+        Route::get('getuser', 'APISecurity\AuthController@getUser');
+    });
+});
+
 // Centro routes
 Route::apiResource('centros', 'CentroController');
-Route::get('/centros/{centro}/areas', 'CentroController@areas');
+Route::get('/centros/{centro}/areas', 'CentroController@areas')->middleware('auth:api');
 Route::get('/centros/{centro}/director', 'CentroController@director'); //test this!
 
 // Area routes
