@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DatosPaciente;
+use App\Http\Resources\PacienteSintomasResource;
 use App\PacienteSintomas;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,40 @@ class PacienteSintomasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $data = $request->all();
+
+        // $validator = Validator::make($data, [
+        //     'id_centro' => 'required',
+        //     'nombre' => 'required|unique:areas',
+        //     'categoria' => 'required|',
+        // ]);
+
+        // if($validator->fails()){
+        //     return response()->json(['error' => $validator->errors(),
+        //                         'message'=> 'Hay datos incorrectos']);
+        // }
+
+        $paciente = DatosPaciente::find($data['id_paciente']);
+
+        $sintomas = new PacienteSintomas();
+        $sintomas->fecha_sintomas = $data['fecha_sintomas'];
+        $sintomas->fiebre = $data['fiebre'];
+        $sintomas->rinorrea = $data['rinorrea'];
+        $sintomas->congestion_nasal = $data['congestion_nasal'];
+        $sintomas->tos = $data['tos'];
+        $sintomas->expectoracion = $data['expectoracion'];
+        $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'];
+        $sintomas->cefalea = $data['cefalea'];
+        $sintomas->dolor_garganta = $data['dolor_garganta'];
+        $sintomas->otros = $data['otros'];
+
+
+
+        $sintomas->paciente()->associate($paciente)->save();
+
+        return response()->json([ 'sintomas' => new PacienteSintomasResource($sintomas),
+                            'message' => 'Síntomas registrado'],
+                            200);
     }
 
     /**

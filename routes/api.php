@@ -55,6 +55,9 @@ Route::post('/pacientes/{datos_paciente}/app', 'PacienteAppController@store');
 //PacienteContacto routes
 Route::post('/pacientes/{datos_paciente}/contacto', 'PacienteContactoController@store');
 
+//PacienteSintomas routes
+Route::post('/pacientes/{datos_paciente}/sintomas', 'PacienteSintomasController@store');
+
 
 
 
