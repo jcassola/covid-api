@@ -108,7 +108,7 @@ class DatosPacienteController extends Controller
      */
     public function apps(DatosPaciente $datosPaciente)
     {
-        $app = $datosPaciente->apps;
+        $app = $datosPaciente->apps()->get();
         if(count($app) > 0){
             return response()->json([ 'app' => new
                             PacienteAppResource($app), 'message' => 'Success'],
@@ -127,7 +127,7 @@ class DatosPacienteController extends Controller
      */
     public function sintomas(DatosPaciente $datosPaciente)
     {
-        $sintomas = $datosPaciente->sintomas;
+        $sintomas = $datosPaciente->sintomas->get();
         if(count($sintomas) > 0){
             return response()->json([ 'sintomas' => new
                             PacienteSintomasResource($sintomas), 'message' => 'Success'],
@@ -146,7 +146,7 @@ class DatosPacienteController extends Controller
      */
     public function contactos(DatosPaciente $datosPaciente)
     {
-        $contactos = $datosPaciente->contactos;
+        $contactos = $datosPaciente->contactos->get();
         if(count($contactos) > 0){
             return response()->json([ 'contactos' => new
                             PacienteContactoResource($contactos), 'message' => 'Success'],

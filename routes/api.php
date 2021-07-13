@@ -49,6 +49,10 @@ Route::get('/pacientes/{datos_paciente}/app', 'DatosPacienteController@apps');
 Route::get('/pacientes/{datos_paciente}/sintomas', 'DatosPacienteController@sintomas');
 Route::get('/pacientes/{datos_paciente}/contactos', 'DatosPacienteController@contactos');
 
+//PacienteApp routes
+Route::post('/pacientes/{datos_paciente}/app', 'PacienteAppController@store');
+
+
 
 
 

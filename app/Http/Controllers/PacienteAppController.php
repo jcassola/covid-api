@@ -56,7 +56,6 @@ class PacienteAppController extends Controller
 
         $app->paciente()->associate($paciente)->save();
 
-
         return response()->json([ 'app' => new PacienteAppResource($app),
                             'message' => 'Antecedentes patológicos registrados'],
                             200);
