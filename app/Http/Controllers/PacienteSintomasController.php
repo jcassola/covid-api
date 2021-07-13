@@ -42,17 +42,20 @@ class PacienteSintomasController extends Controller
 
         $paciente = DatosPaciente::find($data['id_paciente']);
 
+        // $sintomas = PacienteSintomas::create($data);
+
+
         $sintomas = new PacienteSintomas();
         $sintomas->fecha_sintomas = $data['fecha_sintomas'];
-        $sintomas->fiebre = $data['fiebre'];
-        $sintomas->rinorrea = $data['rinorrea'];
-        $sintomas->congestion_nasal = $data['congestion_nasal'];
-        $sintomas->tos = $data['tos'];
-        $sintomas->expectoracion = $data['expectoracion'];
-        $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'];
-        $sintomas->cefalea = $data['cefalea'];
-        $sintomas->dolor_garganta = $data['dolor_garganta'];
-        $sintomas->otros = $data['otros'];
+        $sintomas->fiebre = $data['fiebre'] ?? '0';
+        $sintomas->rinorrea = $data['rinorrea'] ?? '0';
+        $sintomas->congestion_nasal = $data['congestion_nasal'] ?? '0';
+        $sintomas->tos = $data['tos'] ?? '0';
+        $sintomas->expectoracion = $data['expectoracion'] ?? '0';
+        $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? '0';
+        $sintomas->cefalea = $data['cefalea'] ?? '0';
+        $sintomas->dolor_garganta = $data['dolor_garganta'] ?? '0';
+        $sintomas->otros = $data['otros'] ?? '';
 
 
 

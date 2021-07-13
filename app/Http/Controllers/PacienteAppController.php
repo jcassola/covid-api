@@ -44,15 +44,15 @@ class PacienteAppController extends Controller
         $paciente = DatosPaciente::find($data['id_paciente']);
 
         $app = new PacienteApp();
-        $app->hipertension = $data['hipertension'];
-        $app->diabetes = $data['diabetes'];
-        $app->asma = $data['asma'];
+        $app->hipertension = $data['hipertension'] ?? '0';
+        $app->diabetes = $data['diabetes'] ?? '0';
+        $app->asma = $data['asma'] ?? '0';
         $app->obesidad = $data['obesidad'];
-        $app->insuficiencia_renal = $data['insuficiencia_renal'];
-        $app->embarazo = $data['embarazo'];
-        $app->ninho = $data['ninho'];
-        $app->oncologia = $data['oncologia'];
-        $app->otros = $data['otros'];
+        $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? '0';
+        $app->embarazo = $data['embarazo'] ?? '0';
+        $app->ninho = $data['ninho'] ?? '0';
+        $app->oncologia = $data['oncologia'] ?? '0';
+        $app->otros = $data['otros'] ?? '';
 
         $app->paciente()->associate($paciente)->save();
 
