@@ -16,9 +16,9 @@ class CreatePacienteContactosTable extends Migration
         Schema::create('paciente_contactos', function (Blueprint $table) {
             $table->bigIncrements('id_contactos')->autoIncrement();
             $table->unsignedBigInteger('id_paciente');
-            $table->dateTime('fecha_contacto');
-            $table->string('tipo_contacto', 100);
-            $table->string('lugar_contacto', 100);
+            $table->dateTime('fecha_contacto')->nullable();
+            $table->string('tipo_contacto', 100)->nullable();
+            $table->string('lugar_contacto', 100)->nullable();
             $table->timestamps();
 
             $table->foreign('id_paciente')
