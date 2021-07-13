@@ -16,8 +16,9 @@ class CreateDatosPacientesTable extends Migration
         Schema::create('datos_paciente', function (Blueprint $table) {
             $table->bigIncrements('id_paciente')->autoIncrement();
             $table->unsignedBigInteger('id_ingresado')->nullable();
-            $table->boolean('test_antigeno')->default(0)->nullable();
-            $table->boolean('vacunado')->default(0)->nullable();
+            $table->unsignedBigInteger('id_area')->default(1);
+            $table->boolean('test_antigeno')->default(0);
+            $table->boolean('vacunado')->default(0);
             $table->string('nombre', 100);
             $table->integer('edad');
             $table->string('ci', 11);
