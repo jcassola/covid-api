@@ -106,9 +106,9 @@ Route::prefix('pacientes')->group(function () {
 //PacienteSintomas routes
 Route::prefix('pacientes')->group(function () {
     Route::middleware('auth:api')->group(function() {
-        Route::post('/pacientes/sintomas', 'PacienteSintomasController@store');
-        Route::put('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@update');
-        Route::delete('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
+        Route::post('/sintomas', 'PacienteSintomasController@store');
+        Route::put('/sintomas/{paciente_sintomas}', 'PacienteSintomasController@update');
+        Route::delete('/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
     });
 });
 

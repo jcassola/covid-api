@@ -92,7 +92,7 @@ class PacienteContactoController extends Controller
     {
         $pacienteContacto->delete();
 
-        return response()->json([ 'app' => new PacienteContactoResource($pacienteContacto),
+        return response()->json([ 'contacto' => new PacienteContactoResource($pacienteContacto),
                                 'message' => 'Contactos eliminados'],
                                 200);
     }
