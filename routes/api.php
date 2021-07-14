@@ -58,9 +58,7 @@ Route::prefix('areas')->group(function () {
 });
 
 
-
 // Habitacion routes - Puesto manual porque el resource recibe habitacione en vez de habitaciones
-
 Route::prefix('habitaciones')->group(function () {
     Route::middleware('auth:api')->group(function() {
         Route::get('/', 'HabitacionController@index');
@@ -96,17 +94,23 @@ Route::prefix('pacientes')->group(function () {
     });
 });
 
-
-
 //PacienteContacto routes
-Route::post('/pacientes/contacto', 'PacienteContactoController@store');
-Route::put('/pacientes/contacto/{paciente_contacto}', 'PacienteContactoController@update');
-Route::delete('/pacientes/contacto/{paciente_contacto}', 'PacienteContactoController@destroy');
+Route::prefix('pacientes')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::post('/contacto', 'PacienteContactoController@store');
+        Route::put('/contacto/{paciente_contacto}', 'PacienteContactoController@update');
+        Route::delete('/contacto/{paciente_contacto}', 'PacienteContactoController@destroy');
+    });
+});
 
 //PacienteSintomas routes
-Route::post('/pacientes/sintomas', 'PacienteSintomasController@store');
-Route::put('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@update');
-Route::delete('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
+Route::prefix('pacientes')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::post('/pacientes/sintomas', 'PacienteSintomasController@store');
+        Route::put('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@update');
+        Route::delete('/pacientes/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
+    });
+});
 
 
 
