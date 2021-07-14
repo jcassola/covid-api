@@ -46,9 +46,18 @@ Route::prefix('centros')->group(function () {
 
 
 // Area routes
-Route::apiResource('areas', 'AreaController');
-Route::get('/areas/{area}/habitaciones', 'AreaController@habitaciones');
-Route::get('/areas/{area}/habitaciones-disponibles', 'AreaController@habitaciones_disponibles');
+Route::prefix('areas')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::get('/', 'AreaController@index');
+        Route::get('/{area}', 'AreaController@show');
+        Route::post('/', 'AreaController@store');
+        Route::put('/{area}', 'AreaController@update');
+        Route::delete('/{area}', 'AreaController@destroy');
+        Route::get('/areas/{area}/habitaciones', 'AreaController@habitaciones');
+        Route::get('/areas/{area}/habitaciones-disponibles', 'AreaController@habitaciones_disponibles');
+    });
+});
+
 
 
 // Habitacion routes - Puesto manual porque el resource recibe habitacione en vez de habitaciones
