@@ -56,7 +56,7 @@ class PacienteAppController extends Controller
 
         $app->paciente()->associate($paciente)->save();
 
-        return response()->json([ 'app' => new PacienteAppResource($app),
+        return response()->json([ 'apps' => new PacienteAppResource($app),
                             'message' => 'Antecedentes patológicos registrados'],
                             200);
     }
@@ -83,7 +83,7 @@ class PacienteAppController extends Controller
     {
         $pacienteApp->update($request->all());
 
-        return response()->json([ 'app' => new PacienteAppResource($pacienteApp),
+        return response()->json([ 'apps' => new PacienteAppResource($pacienteApp),
                         'message' => 'Antecedentes patológicos actualizados'], 200
         );
     }
@@ -98,7 +98,7 @@ class PacienteAppController extends Controller
     {
         $pacienteApp->delete();
 
-        return response()->json([ 'app' => new PacienteAppResource($pacienteApp),
+        return response()->json([ 'apps' => new PacienteAppResource($pacienteApp),
                                 'message' => 'Antecedentes patológicos eliminados'],
                                 200);
     }

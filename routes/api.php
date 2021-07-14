@@ -31,7 +31,6 @@ Route::prefix('auth')->group(function () {
 });
 
 // Centro routes
-
 Route::prefix('centros')->group(function () {
     Route::middleware('auth:api')->group(function() {
         Route::get('/', 'CentroController@index');
@@ -61,29 +60,41 @@ Route::prefix('areas')->group(function () {
 
 
 // Habitacion routes - Puesto manual porque el resource recibe habitacione en vez de habitaciones
-Route::get('/habitaciones', 'HabitacionController@index');
-Route::post('/habitaciones', 'HabitacionController@store');
-Route::get('/habitaciones/{habitacion}', 'HabitacionController@show');
-Route::put('/habitaciones/{habitacion}', 'HabitacionController@update');
-Route::delete('/habitaciones/{habitacion}', 'HabitacionController@destroy');
-Route::get('/habitaciones/{habitacion}/ingresados', 'HabitacionController@ingresados');
-// Route::get('/habitaciones/{habitacion}/pacientes-ingresados', 'HabitacionController@pacientes_ingresados');
+
+Route::prefix('habitaciones')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::get('/', 'HabitacionController@index');
+        Route::get('/{habitacion}', 'HabitacionController@show');
+        Route::post('/', 'HabitacionController@store');
+        Route::put('/{habitacion}', 'HabitacionController@update');
+        Route::delete('/{habitacion}', 'HabitacionController@destroy');
+        Route::get('/{habitacion}/ingresados', 'HabitacionController@ingresados');
+    });
+});
 
 
 // DatosPacientes routes
-Route::get('/pacientes', 'DatosPacienteController@index');
-Route::post('/pacientes', 'DatosPacienteController@store');
-Route::get('/pacientes/{datos_paciente}', 'DatosPacienteController@show');
-Route::put('/pacientes/{datos_paciente}', 'DatosPacienteController@update');
-Route::delete('/pacientes/{datos_paciente}', 'DatosPacienteController@destroy');
-Route::get('/pacientes/apps', 'DatosPacienteController@apps');
-Route::get('/pacientes/sintomas', 'DatosPacienteController@sintomas');
-Route::get('/pacientes/contacto', 'DatosPacienteController@contactos');
+Route::prefix('pacientes')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::get('/', 'DatosPacienteController@index');
+        Route::post('/', 'DatosPacienteController@store');
+        Route::get('/{datos_paciente}', 'DatosPacienteController@show');
+        Route::put('/{datos_paciente}', 'DatosPacienteController@update');
+        Route::delete('/{datos_paciente}', 'DatosPacienteController@destroy');
+        Route::get('/{datos_paciente}/apps', 'DatosPacienteController@apps');
+        Route::get('/{datos_paciente}/sintomas', 'DatosPacienteController@sintomas');
+        Route::get('/{datos_paciente}/contacto', 'DatosPacienteController@contactos');
+    });
+});
 
 //PacienteApp routes
-Route::post('/pacientes/app', 'PacienteAppController@store');
-Route::put('/pacientes/app/{paciente_app}', 'PacienteAppController@update');
-Route::delete('/pacientes/app/{paciente_app}', 'PacienteAppController@destroy');
+Route::prefix('pacientes')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::post('/apps', 'PacienteAppController@store');
+        Route::put('/apps/{paciente_app}', 'PacienteAppController@update');
+        Route::delete('/apps/{paciente_app}', 'PacienteAppController@destroy');
+    });
+});
 
 
 
