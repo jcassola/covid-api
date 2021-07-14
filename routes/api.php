@@ -19,21 +19,31 @@ use Illuminate\Http\Request;
 // });
 
 //Security routes
-Route::group([ 'prefix' => 'auth'], function (){
-    Route::group(['middleware' => ['guest:api']], function () {
+Route::prefix('auth')->group(function () {
+    Route::middleware('guest:api')->group(function() {
         Route::post('login', 'APISecurity\AuthController@login');
         Route::post('signup', 'APISecurity\AuthController@signup');
     });
-    Route::group(['middleware' => 'auth:api'], function() {
+    Route::middleware('auth:api')->group(function() {
         Route::get('logout', 'APISecurity\AuthController@logout');
         Route::get('getuser', 'APISecurity\AuthController@getUser');
     });
 });
 
 // Centro routes
-Route::apiResource('centros', 'CentroController');
-Route::get('/centros/{centro}/areas', 'CentroController@areas')->middleware('auth:api');
-Route::get('/centros/{centro}/director', 'CentroController@director'); //test this!
+
+Route::prefix('centros')->group(function () {
+    Route::middleware('auth:api')->group(function() {
+        Route::get('/', 'CentroController@index');
+        Route::get('/{centro}', 'CentroController@show');
+        Route::post('/', 'CentroController@store');
+        Route::put('/{centro}', 'CentroController@update');
+        Route::delete('/{centro}', 'CentroController@destroy');
+        Route::get('/{centro}/areas', 'CentroController@areas');
+        Route::get('/{centro}/director', 'CentroController@director'); //test this!
+    });
+});
+
 
 // Area routes
 Route::apiResource('areas', 'AreaController');
