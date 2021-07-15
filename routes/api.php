@@ -119,33 +119,38 @@ Route::prefix('pacientes')->group(function () {
 //Nomencladores
 Route::prefix('nomenclador')->group(function () {
     //Antigeno
-    Route::get('/antigeno/{nombre}', function ($nombre) {
-        return TipoTestAntigeno::where('nombre', $nombre)->first()->id_antigeno;
+    Route::get('/antigeno', function () {
+        return TipoTestAntigeno::select('id', 'nombre')->get();
     });
 
     //EstadoSistema
-    Route::get('/sistema/{nombre}', function ($nombre) {
-        return TipoEstadoSistema::where('nombre', $nombre)->first()->id_sistema;
+    Route::get('/sistema', function () {
+        return TipoEstadoSistema::select('id', 'nombre')->get();
     });
 
     //Categoria
-    Route::get('/categoria/{nombre}', function ($nombre) {
-        return PacienteCategoria::where('nombre', $nombre)->first()->id_categoria;
+    Route::get('/categoria', function () {
+        return PacienteCategoria::select('id', 'nombre')->get();
     });
 
     //EstadoSalud
-    Route::get('/salud/{nombre}', function ($nombre) {
-        return TipoEstadoSalud::where('nombre', $nombre)->first()->id_salud;
+    Route::get('/salud/', function () {
+        return TipoEstadoSalud::select('id', 'nombre')->get();
     });
 
     // //Provincia
-    // Route::get('/provincia/{nombre}', function ($nombre) {
-    //     return Provincia::where('nombre', $nombre)->first()->id_provincia;
+    // Route::get('/provincia', function () {
+    //     return Provincia::select('id', 'nombre')->get();
     // });
 
     // //Muncipio
-    // Route::get('/provincia/{nombre}', function ($nombre) {
-    //     return Municipio::where('nombre', $nombre)->first()->id_municipio;
+    // Route::get('/municipio}', function () {
+    //     return Municipio::select('id', 'nombre')->get();
+    // });
+
+    // //AreaSalud
+    // Route::get('/salud', function () {
+    //     return AreaSalud::select('id', 'nombre')->get();
     // });
 });
 

@@ -14,7 +14,7 @@ class CreateTipoTestAntigenosTable extends Migration
     public function up()
     {
         Schema::create('tipo_test_antigeno', function (Blueprint $table) {
-            $table->bigIncrements('id_antigeno');
+            $table->bigIncrements('id');
             $table->string('nombre');
             $table->timestamps();
         });
