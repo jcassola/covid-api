@@ -18,7 +18,7 @@ class PacienteApp extends Model
         'emabarazo',
         'ninho',
         'oncologia',
-        'otros'
+        'otros_apps'
     ];
 
 

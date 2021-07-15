@@ -25,7 +25,7 @@ class CreatePacienteSintomasTable extends Migration
             $table->boolean('dificultad_respiratoria')->default(0);
             $table->boolean('cefalea')->default(0);
             $table->boolean('dolor_garganta')->default(0);
-            $table->string('otros', 100);
+            $table->string('otros_sint', 100);
             $table->timestamps();
 
             $table->foreign('id_paciente')

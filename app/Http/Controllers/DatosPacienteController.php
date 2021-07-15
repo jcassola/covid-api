@@ -246,7 +246,7 @@ class DatosPacienteController extends Controller
             $app->obesidad = $data['obesidad'] ?? '0';
             $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? '0';
             $app->oncologia = $data['oncologia'] ?? '0';
-            $app->otros = $data['otros'] ?? '';
+            $app->otros = $data['otros_apps'] ?? '';
 
             $app->save();
 
@@ -281,7 +281,7 @@ class DatosPacienteController extends Controller
             $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? '0';
             $sintomas->cefalea = $data['cefalea'] ?? '0';
             $sintomas->dolor_garganta = $data['dolor_garganta'] ?? '0';
-            $sintomas->otros = $data['otros'] ?? '';
+            $sintomas->otros = $data['otros_sint'] ?? '';
 
             $sintomas->save();
 

@@ -24,7 +24,7 @@ class CreatePacienteAppsTable extends Migration
             // $table->boolean('embarazo')->default(0);
             // $table->boolean('ninho')->default(0);
             $table->boolean('oncologia')->default(0);
-            $table->string('otros', 100);
+            $table->string('otros_apps', 100);
             $table->timestamps();
 
             $table->foreign('id_paciente')

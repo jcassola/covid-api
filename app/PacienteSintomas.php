@@ -19,7 +19,7 @@ class PacienteSintomas extends Model
         'dificultad_respiratoria',
         'cefalea',
         'dolor_garganta',
-        'otros'
+        'otros_sint'
     ];
 
 
