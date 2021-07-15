@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\HabitacionController;
+use App\PacienteCategoria;
+use App\TipoEstadoSalud;
+use App\TipoEstadoSistema;
+use App\TipoTestAntigeno;
 use Illuminate\Http\Request;
 
 /*
@@ -111,6 +115,42 @@ Route::prefix('pacientes')->group(function () {
         Route::delete('/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
     });
 });
+
+//Nomencladores
+Route::prefix('nomenclador')->group(function () {
+    //Antigeno
+    Route::get('/antigeno/{nombre}', function ($nombre) {
+        return TipoTestAntigeno::where('nombre', $nombre)->first()->id_antigeno;
+    });
+
+    //EstadoSistema
+    Route::get('/sistema/{nombre}', function ($nombre) {
+        return TipoEstadoSistema::where('nombre', $nombre)->first()->id_sistema;
+    });
+
+    //Categoria
+    Route::get('/categoria/{nombre}', function ($nombre) {
+        return PacienteCategoria::where('nombre', $nombre)->first()->id_categoria;
+    });
+
+    //EstadoSalud
+    Route::get('/salud/{nombre}', function ($nombre) {
+        return TipoEstadoSalud::where('nombre', $nombre)->first()->id_salud;
+    });
+
+    // //Provincia
+    // Route::get('/provincia/{nombre}', function ($nombre) {
+    //     return Provincia::where('nombre', $nombre)->first()->id_provincia;
+    // });
+
+    // //Muncipio
+    // Route::get('/provincia/{nombre}', function ($nombre) {
+    //     return Municipio::where('nombre', $nombre)->first()->id_municipio;
+    // });
+});
+
+
+
 
 
 
