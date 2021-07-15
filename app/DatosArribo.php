@@ -9,6 +9,12 @@ class DatosArribo extends Model
     protected $table = 'datos_arribos';
     protected $primaryKey = 'id_arribo';
 
+    protected $fillable = [
+        'pais_procedencia',
+        'lugar_estancia',
+        'fecha_arribo'
+    ];
+
 
     public function paciente()
     {

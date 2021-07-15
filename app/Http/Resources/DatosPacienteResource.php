@@ -40,6 +40,7 @@ class DatosPacienteResource extends JsonResource
             'apps' => new PacienteAppResource($this->apps),
             'sintomas' => new PacienteSintomasResource($this->sintomas),
             'contacto' => new PacienteContactoResource($this->contactos),
+            'arribo' => new DatosArriboResource($this->arribos),
         ];
     }
 }
