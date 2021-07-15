@@ -42,6 +42,11 @@ class DatosPaciente extends Model
         return $this->hasOne('App\PacienteSintomas', 'id_paciente');
     }
 
+    public function arribos()
+    {
+        return $this->hasOne('App\DatosArribo', 'id_paciente');
+    }
+
     public function ingreso()
     {
         return $this->belongsTo('App\PacienteIngresado', 'id_ingreso');
