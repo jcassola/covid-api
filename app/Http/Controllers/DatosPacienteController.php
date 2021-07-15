@@ -8,6 +8,13 @@ use App\Http\Resources\DatosPacienteResourceCollection;
 use App\Http\Resources\PacienteAppResource;
 use App\Http\Resources\PacienteContactoResource;
 use App\Http\Resources\PacienteSintomasResource;
+use App\PacienteApp;
+use App\PacienteContacto;
+use App\PacienteSintomas;
+use DB;
+use ErrorException;
+use Exception;
+use GuzzleHttp\RetryMiddleware;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -21,7 +28,6 @@ class DatosPacienteController extends Controller
     public function index()
     {
         return new DatosPacienteResourceCollection(DatosPaciente::paginate(10));
-
     }
 
     /**
@@ -36,9 +42,11 @@ class DatosPacienteController extends Controller
 
         $validator = Validator::make($data, [
             'nombre' => 'required',
+            'apellidos' => 'required',
             'edad' => 'required|',
             'ci' => 'required|unique:datos_paciente',
             'sexo' => 'required',
+            'categoria' => 'required',
             'direccion' => 'required|',
             'municipio' => 'required|',
             'provincia' => 'required|'
@@ -49,11 +57,80 @@ class DatosPacienteController extends Controller
                                 'message'=> 'Hay datos incorrectos']);
         }
 
-        $paciente = DatosPaciente::create($data);
+        //Paciente
+        $paciente = new DatosPaciente();
+        $paciente->nombre = $request->input('nombre');
+        $paciente->apellidos = $request->input('apellidos');
+        $paciente->edad = $request->input('edad');
+        $paciente->ci = $request->input('ci');
+        $paciente->sexo = $request->input('sexo');
+        $paciente->direccion = $request->input('direccion');
+        $paciente->municipio = $request->input('municipio');
+        $paciente->provincia = $request->input('provincia');
+        $paciente->cmf = $request->input('cmf');
+        $paciente->remite_caso = $request->input('remite_caso');
+        $paciente->hospital = $request->input('hospital');
+        $paciente->embarazada = $request->input('embarazada') ?? '0';
+        $paciente->ninho = $request->input('ninho') ?? '0';
+        $paciente->estado_salud = $request->input('estado_salud');
+        $paciente->categoria = $request->input('categoria');
+        $paciente->id_area = $request->input('id_area') ?? '1';
+        $paciente->estado_sistema = $request->input('estado_sistema');
+        $paciente->trabajador_salud = $request->input('trabajador_salud') ?? '0';
+        $paciente->test_antigeno = $request->input('test_antigeno') ?? '1';
+        $paciente->vacunado = $request->input('vacunado') ?? '0';
 
-        return response()->json([ 'paciente' => new DatosPacienteResource($paciente),
-                            'message' => 'Paciente registrado'],
-                            200);
+
+        //Apps
+        $app = new PacienteApp();
+        $app->hipertension = $data['hipertension'] ?? '0';
+        $app->diabetes = $data['diabetes'] ?? '0';
+        $app->asma = $data['asma'] ?? '0';
+        $app->obesidad = $data['obesidad'] ?? '0';
+        $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? '0';
+        $app->oncologia = $data['oncologia'] ?? '0';
+        $app->otros = $data['otros'] ?? '';
+
+
+
+        //Contacto
+        $contacto = new PacienteContacto();
+        $contacto->fecha_contacto = $data['fecha_contacto'] ?? null;
+        $contacto->tipo_contacto = $data['tipo_contacto'] ?? null;
+        $contacto->lugar_contacto = $data['lugar_contacto'] ?? null;
+
+
+
+        //Sintomas
+        $sintomas = new PacienteSintomas();
+        $sintomas->fecha_sintomas = $data['fecha_sintomas'] ?? null;
+        $sintomas->fiebre = $data['fiebre'] ?? '0';
+        $sintomas->rinorrea = $data['rinorrea'] ?? '0';
+        $sintomas->congestion_nasal = $data['congestion_nasal'] ?? '0';
+        $sintomas->tos = $data['tos'] ?? '0';
+        $sintomas->expectoracion = $data['expectoracion'] ?? '0';
+        $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? '0';
+        $sintomas->cefalea = $data['cefalea'] ?? '0';
+        $sintomas->dolor_garganta = $data['dolor_garganta'] ?? '0';
+        $sintomas->otros = $data['otros'] ?? '';
+
+        try{
+            DB::beginTransaction();
+            $paciente->save();
+            $app->paciente()->associate($paciente)->save();
+            $contacto->paciente()->associate($paciente)->save();
+            $sintomas->paciente()->associate($paciente)->save();
+
+            DB::commit();
+
+            return response()->json([ 'paciente' => new DatosPacienteResource($paciente),
+                                'message' => 'Paciente registrado'],
+                                200);
+        }catch(ErrorException $e){
+            DB::rollback();
+            return response()->json(['error' => 'Error'],
+                                200);
+        }
     }
 
     /**

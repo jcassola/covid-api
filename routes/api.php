@@ -73,7 +73,7 @@ Route::prefix('habitaciones')->group(function () {
 
 // DatosPacientes routes
 Route::prefix('pacientes')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::get('/', 'DatosPacienteController@index');
         Route::post('/', 'DatosPacienteController@store');
         Route::get('/{datos_paciente}', 'DatosPacienteController@show');
@@ -82,7 +82,7 @@ Route::prefix('pacientes')->group(function () {
         Route::get('/{datos_paciente}/apps', 'DatosPacienteController@apps');
         Route::get('/{datos_paciente}/sintomas', 'DatosPacienteController@sintomas');
         Route::get('/{datos_paciente}/contacto', 'DatosPacienteController@contactos');
-    });
+    // });
 });
 
 //PacienteApp routes

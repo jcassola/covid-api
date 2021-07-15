@@ -21,8 +21,8 @@ class CreatePacienteAppsTable extends Migration
             $table->boolean('asma')->default(0);
             $table->boolean('obesidad')->default(0);
             $table->boolean('insuficiencia_renal')->default(0);
-            $table->boolean('embarazo')->default(0);
-            $table->boolean('ninho')->default(0);
+            // $table->boolean('embarazo')->default(0);
+            // $table->boolean('ninho')->default(0);
             $table->boolean('oncologia')->default(0);
             $table->string('otros', 100);
             $table->timestamps();

@@ -20,18 +20,23 @@ class CreateDatosPacientesTable extends Migration
             $table->boolean('test_antigeno')->default(0);
             $table->boolean('vacunado')->default(0);
             $table->string('nombre', 100);
+            $table->string('apellidos', 100);
             $table->integer('edad');
             $table->string('ci', 11);
             $table->char('sexo', 1);
             $table->string('direccion', 100);
-            $table->string('municipio', 100);
-            $table->string('provincia', 100);
+            $table->integer('municipio');
+            $table->integer('provincia');
             $table->string('cmf', 10)->nullable();
-            $table->string('remite_caso', 10)->nullable();
+            $table->string('remite_caso', 100)->nullable();
             $table->string('hospital', 100)->nullable();
-            $table->string('estado_salud', 100)->nullable();
-            $table->string('estado_sistema', 100)->nullable();
+            $table->boolean('embarazada')->default(0);
+            $table->boolean('ninho')->default(0);
             $table->boolean('trabajador_salud')->default(0);
+            //FK
+            $table->integer('categoria')->nullable();
+            $table->integer('estado_salud')->nullable();
+            $table->integer('estado_sistema')->nullable();
             $table->timestamps();
 
             $table->foreign('id_ingresado')
