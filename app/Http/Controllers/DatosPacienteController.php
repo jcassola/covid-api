@@ -176,25 +176,24 @@ class DatosPacienteController extends Controller
     {
         $data = $request->all();
 
-        // $validator = Validator::make($data, [
-        //     'nombre' => 'required',
-        //     'apellidos' => 'required',
-        //     'edad' => 'required|',
-        //     'ci' => 'required|unique:datos_paciente',
-        //     'sexo' => 'required',
-        //     'categoria' => 'required',
-        //     'direccion' => 'required|',
-        //     'municipio' => 'required|',
-        //     'provincia' => 'required|'
-        // ]);
+        $validator = Validator::make($data, [
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'edad' => 'required',
+            'ci' => 'required',
+            'sexo' => 'required',
+            'categoria' => 'required',
+            'direccion' => 'required',
+            'municipio' => 'required',
+            'provincia' => 'required'
+        ]);
 
-        // if($validator->fails()){
-        //     return response()->json(['error' => $validator->errors(),
-        //                         'message'=> 'Hay datos incorrectos']);
-        // }
+        if($validator->fails()){
+            return response()->json(['error' => $validator->errors(),
+                                'message'=> 'Hay datos incorrectos']);
+        }
 
         //Paciente
-        // $paciente = new DatosPaciente();
         $datosPaciente->nombre = $request->input('nombre');
         $datosPaciente->apellidos = $request->input('apellidos');
         $datosPaciente->edad = $request->input('edad');
