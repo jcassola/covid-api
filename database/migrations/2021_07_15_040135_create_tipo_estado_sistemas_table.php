@@ -13,7 +13,7 @@ class CreateTipoEstadoSistemasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_estado_sistemas', function (Blueprint $table) {
+        Schema::create('tipo_estado_sistema', function (Blueprint $table) {
             $table->bigIncrements('id_sistema');
             $table->string('nombre');
             $table->timestamps();

@@ -13,7 +13,7 @@ class CreateTipoEstadoSaludsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_estado_saluds', function (Blueprint $table) {
+        Schema::create('tipo_estado_salud', function (Blueprint $table) {
             $table->bigIncrements('id_salud');
             $table->string('nombre');
             $table->timestamps();

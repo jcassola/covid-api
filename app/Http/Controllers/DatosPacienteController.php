@@ -9,8 +9,12 @@ use App\Http\Resources\PacienteAppResource;
 use App\Http\Resources\PacienteContactoResource;
 use App\Http\Resources\PacienteSintomasResource;
 use App\PacienteApp;
+use App\PacienteCategoria;
 use App\PacienteContacto;
 use App\PacienteSintomas;
+use App\TipoEstadoSalud;
+use App\TipoEstadoSistema;
+use App\TipoTestAntigeno;
 use DB;
 use ErrorException;
 use Exception;
@@ -72,10 +76,10 @@ class DatosPacienteController extends Controller
         $paciente->hospital = $request->input('hospital');
         $paciente->embarazada = $request->input('embarazada') ?? '0';
         $paciente->ninho = $request->input('ninho') ?? '0';
-        $paciente->estado_salud = $request->input('estado_salud');
-        $paciente->categoria = $request->input('categoria');
+        $paciente->estado_salud = $request->input('estado_salud') ?? '1';
+        $paciente->categoria = $request->input('categoria') ?? '1';
         $paciente->id_area = $request->input('id_area') ?? '1';
-        $paciente->estado_sistema = $request->input('estado_sistema');
+        $paciente->estado_sistema = $request->input('estado_sistema') ?? '1';
         $paciente->trabajador_salud = $request->input('trabajador_salud') ?? '0';
         $paciente->test_antigeno = $request->input('test_antigeno') ?? '1';
         $paciente->vacunado = $request->input('vacunado') ?? '0';
@@ -141,6 +145,21 @@ class DatosPacienteController extends Controller
      */
     public function show(DatosPaciente $datosPaciente)
     {
+        $id_categoria = $datosPaciente->categoria;
+        $id_antigeno = $datosPaciente->test_antigeno;
+        $id_salud = $datosPaciente->estado_salud;
+        $id_sistema = $datosPaciente->estado_sistema;
+
+        $categoria = PacienteCategoria::where('id_categoria', $id_categoria)->first()->nombre;
+        $antigeno = TipoTestAntigeno::where('id_antigeno', $id_antigeno)->first()->nombre;
+        $salud = TipoEstadoSalud::where('id_salud', $id_salud)->first()->nombre;
+        $sistema = TipoEstadoSistema::where('id_sistema', $id_sistema)->first()->nombre;
+
+        $datosPaciente->categoria = $categoria;
+        $datosPaciente->test_antigeno = $antigeno;
+        $datosPaciente->estado_salud = $salud;
+        $datosPaciente->estado_sistema = $sistema;
+
         return response()->json([ 'paciente' => new
                         DatosPacienteResource($datosPaciente), 'message' => 'Success'],
                         200);

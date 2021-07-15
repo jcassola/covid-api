@@ -13,7 +13,7 @@ class CreatePacienteCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('paciente_categorias', function (Blueprint $table) {
+        Schema::create('paciente_categoria', function (Blueprint $table) {
             $table->bigIncrements('id_categoria');
             $table->string('nombre');
             $table->timestamps();

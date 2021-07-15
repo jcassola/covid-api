@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoEstadoSistema extends Model
 {
-    //
+    protected $table = 'tipo_estado_sistema';
+    protected $primaryKey = 'id_sistema';
 }
