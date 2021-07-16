@@ -13,13 +13,22 @@ class TipoEstadoSistemaTableSeeder extends Seeder
     public function run()
     {
         factory(TipoEstadoSistema::class)->create([
-            'nombre' => 'Encuestado',
+            'nombre' => 'ENCUESTADO',
         ]);
         factory(TipoEstadoSistema::class)->create([
-            'nombre' => 'Pendiente Ingreso',
+            'nombre' => 'PENDIENTE INGRESO',
         ]);
         factory(TipoEstadoSistema::class)->create([
-            'nombre' => 'Ingresado',
+            'nombre' => 'INGRESADO',
+        ]);
+        factory(TipoEstadoSistema::class)->create([
+            'nombre' => 'RECUPERADO',
+        ]);
+        factory(TipoEstadoSistema::class)->create([
+            'nombre' => 'RECUPERADO SEGUIMIENTO',
+        ]);
+        factory(TipoEstadoSistema::class)->create([
+            'nombre' => 'TRASLADO',
         ]);
     }
 }

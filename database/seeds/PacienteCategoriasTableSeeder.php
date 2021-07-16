@@ -13,13 +13,13 @@ class PacienteCategoriasTableSeeder extends Seeder
     public function run()
     {
         factory(PacienteCategoria::class)->create([
-            'nombre' => 'Sospechoso',
+            'nombre' => 'SOSPECHOSO',
         ]);
         factory(PacienteCategoria::class)->create([
-            'nombre' => 'Contacto',
+            'nombre' => 'CONTACTO',
         ]);
         factory(PacienteCategoria::class)->create([
-            'nombre' => 'Positivo',
+            'nombre' => 'POSITIVO',
         ]);
     }
 }

@@ -13,19 +13,19 @@ class TipoEstadoSaludTableSeeder extends Seeder
     public function run()
     {
         factory(TipoEstadoSalud::class)->create([
-            'nombre' => 'De Cuidado',
+            'nombre' => 'DE CUIDADO',
         ]);
         factory(TipoEstadoSalud::class)->create([
-            'nombre' => 'Grave',
+            'nombre' => 'GRAVE',
         ]);
         factory(TipoEstadoSalud::class)->create([
-            'nombre' => 'Crítico Estable',
+            'nombre' => 'CRITICO ESTABLE',
         ]);
         factory(TipoEstadoSalud::class)->create([
-            'nombre' => 'Crítico Inestable',
+            'nombre' => 'CRITICO INESTABLE',
         ]);
         factory(TipoEstadoSalud::class)->create([
-            'nombre' => 'Fallecido',
+            'nombre' => 'FALLECIDO',
         ]);
     }
 }

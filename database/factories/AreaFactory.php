@@ -10,6 +10,6 @@ $factory->define(Area::class, function (Faker $faker) {
     return [
         // 'id_centro' => factory(Centro::class),
         'nombre' => $faker->name,
-        'categoria' => $faker->randomElement(array('Alto Riesgo', 'Sospechosos', 'Positivos')),
+        'categoria' => $faker->randomElement(array('1', '2', '3')),
     ];
 });

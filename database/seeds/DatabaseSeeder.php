@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoEstadoSaludTableSeeder::class);
         $this->call(TipoEstadoSistemaTableSeeder::class);
         $this->call(TipoTestAntigenosTableSeeder::class);
+        $this->call(CategoriaAreaTableSeeder::class);
 
 
 

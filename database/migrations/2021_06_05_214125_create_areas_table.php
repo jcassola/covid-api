@@ -17,7 +17,7 @@ class CreateAreasTable extends Migration
             $table->bigIncrements('id_area')->autoIncrement();;
             $table->unsignedBigInteger('id_centro');
             $table->string('nombre', 100);
-            $table->string('categoria', 100);
+            $table->integer('categoria');
             $table->timestamps();
 
             $table->foreign('id_centro')

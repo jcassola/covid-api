@@ -13,13 +13,13 @@ class TipoTestAntigenosTableSeeder extends Seeder
     public function run()
     {
         factory(TipoTestAntigeno::class)->create([
-            'nombre' => 'Positivo',
+            'nombre' => 'POSITIVO',
         ]);
         factory(TipoTestAntigeno::class)->create([
-            'nombre' => 'Negativo',
+            'nombre' => 'NEGATIVO',
         ]);
         factory(TipoTestAntigeno::class)->create([
-            'nombre' => 'No realizado',
+            'nombre' => 'NO REALIZADO',
         ]);
     }
 }
