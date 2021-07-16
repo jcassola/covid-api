@@ -1,5 +1,6 @@
 <?php
 
+use App\CategoriaArea;
 use App\Http\Controllers\HabitacionController;
 use App\PacienteCategoria;
 use App\TipoEstadoSalud;
@@ -134,9 +135,15 @@ Route::prefix('nomenclador')->group(function () {
     });
 
     //EstadoSalud
-    Route::get('/salud/', function () {
+    Route::get('/salud', function () {
         return TipoEstadoSalud::select('id', 'nombre')->get();
     });
+
+    //AreaCategoria
+    Route::get('/area-categoria', function () {
+        return CategoriaArea::select('id', 'nombre')->get();
+    });
+
 
     //Provincia
     // Route::get('/provincia', function () {
