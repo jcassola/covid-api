@@ -161,20 +161,21 @@ class DatosPacienteController extends Controller
      */
     public function show(DatosPaciente $datosPaciente)
     {
-        $id_categoria = $datosPaciente->categoria;
-        $id_antigeno = $datosPaciente->test_antigeno;
-        $id_salud = $datosPaciente->estado_salud;
-        $id_sistema = $datosPaciente->estado_sistema;
+        // $id_categoria = $datosPaciente->categoria;
+        // $id_antigeno = $datosPaciente->test_antigeno;
+        // $id_salud = $datosPaciente->estado_salud;
+        // $id_sistema = $datosPaciente->estado_sistema;
+        // $id_salud = $datosPaciente->id_salud;
 
-        $categoria = PacienteCategoria::where('id', $id_categoria)->first()->nombre ?? null;
-        $antigeno = TipoTestAntigeno::where('id', $id_antigeno)->first()->nombre ?? null;
-        $salud = TipoEstadoSalud::where('id', $id_salud)->first()->nombre ?? null;
-        $sistema = TipoEstadoSistema::where('id', $id_sistema)->first()->nombre ?? null;
+        // $categoria = PacienteCategoria::where('id', $id_categoria)->first()->nombre ?? null;
+        // $antigeno = TipoTestAntigeno::where('id', $id_antigeno)->first()->nombre ?? null;
+        // $salud = TipoEstadoSalud::where('id', $id_salud)->first()->nombre ?? null;
+        // $sistema = TipoEstadoSistema::where('id', $id_sistema)->first()->nombre ?? null;
 
-        $datosPaciente->categoria = $categoria;
-        $datosPaciente->test_antigeno = $antigeno;
-        $datosPaciente->estado_salud = $salud;
-        $datosPaciente->estado_sistema = $sistema;
+        // $datosPaciente->categoria = $categoria;
+        // $datosPaciente->test_antigeno = $antigeno;
+        // $datosPaciente->estado_salud = $salud;
+        // $datosPaciente->estado_sistema = $sistema;
 
         return response()->json([ 'paciente' => new
                         DatosPacienteResource($datosPaciente), 'message' => 'Success'],

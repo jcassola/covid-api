@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(TipoEstadoSistema::class, function (Faker $faker) {
     return [
-        //
+        'nombre' => $faker->name,
     ];
 });

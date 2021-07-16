@@ -138,19 +138,19 @@ Route::prefix('nomenclador')->group(function () {
         return TipoEstadoSalud::select('id', 'nombre')->get();
     });
 
-    // //Provincia
+    //Provincia
     // Route::get('/provincia', function () {
     //     return Provincia::select('id', 'nombre')->get();
     // });
 
     // //Muncipio
-    // Route::get('/municipio}', function () {
-    //     return Municipio::select('id', 'nombre')->get();
+    // Route::get('/municipio/{id}', function ($id) {
+    //     return Municipio::where('id_provincia', '=', $id)->select('id', 'nombre')->get();
     // });
 
-    // //AreaSalud
-    // Route::get('/salud', function () {
-    //     return AreaSalud::select('id', 'nombre')->get();
+    //AreaSalud
+    // Route::get('/salud/{id}', function ($id) {
+    //     return AreaSalud::where('id_municipio', '=', $id)->select('id', 'nombre')->get();
     // });
 });
 
