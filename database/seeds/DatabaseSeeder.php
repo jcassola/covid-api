@@ -19,12 +19,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
+<<<<<<< HEAD
         $this->call(PacienteCategoriasTableSeeder::class);
         $this->call(TipoEstadoSaludTableSeeder::class);
         $this->call(TipoEstadoSistemaTableSeeder::class);
         $this->call(TipoTestAntigenosTableSeeder::class);
         $this->call(CategoriaAreaTableSeeder::class);
 
+=======
+        $this->call(ProvinciaTableSeeder::class);
+        $this->call(MunicipioTableSeeder::class);
+        $this->call(AreaSaludTableSeeder::class);
+        // $this->call(CentrosTableSeeder::class);
+        // $this->call(AreasTableSeeder::class);
+>>>>>>> origin/feature/seeders
 
 
         // Create 10 records of centros
