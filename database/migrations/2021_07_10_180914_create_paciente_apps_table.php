@@ -16,14 +16,14 @@ class CreatePacienteAppsTable extends Migration
         Schema::create('paciente_apps', function (Blueprint $table) {
             $table->bigIncrements('id_app')->autoIncrement();
             $table->unsignedBigInteger('id_paciente');
-            $table->boolean('hipertension')->default(0);
-            $table->boolean('diabetes')->default(0);
-            $table->boolean('asma')->default(0);
-            $table->boolean('obesidad')->default(0);
-            $table->boolean('insuficiencia_renal')->default(0);
-            // $table->boolean('embarazo')->default(0);
-            // $table->boolean('ninho')->default(0);
-            $table->boolean('oncologia')->default(0);
+            $table->boolean('hipertension')->default(false);
+            $table->boolean('diabetes')->default(false);
+            $table->boolean('asma')->default(false);
+            $table->boolean('obesidad')->default(false);
+            $table->boolean('insuficiencia_renal')->default(false);
+            // $table->boolean('embarazo')->default(false);
+            // $table->boolean('ninho')->default(false);
+            $table->boolean('oncologia')->default(false);
             $table->string('otros_apps', 100);
             $table->timestamps();
 

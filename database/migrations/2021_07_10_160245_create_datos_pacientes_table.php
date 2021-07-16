@@ -17,8 +17,8 @@ class CreateDatosPacientesTable extends Migration
             $table->bigIncrements('id_paciente')->autoIncrement();
             $table->unsignedBigInteger('id_ingresado')->nullable();
             $table->unsignedBigInteger('id_area')->default(1);
-            $table->boolean('test_antigeno')->default(0);
-            $table->boolean('vacunado')->default(0);
+            $table->boolean('test_antigeno')->default(false);
+            $table->boolean('vacunado')->default(false);
             $table->string('nombre', 100);
             $table->string('apellidos', 100);
             $table->integer('edad');
@@ -30,9 +30,9 @@ class CreateDatosPacientesTable extends Migration
             $table->string('cmf', 10)->nullable();
             $table->string('remite_caso', 100)->nullable();
             $table->string('hospital', 100)->nullable();
-            $table->boolean('embarazada')->default(0);
-            $table->boolean('ninho')->default(0);
-            $table->boolean('trabajador_salud')->default(0);
+            $table->boolean('embarazada')->default(false);
+            $table->boolean('ninho')->default(false);
+            $table->boolean('trabajador_salud')->default(false);
             //FK
             $table->integer('categoria')->nullable();
             $table->integer('estado_salud')->nullable();

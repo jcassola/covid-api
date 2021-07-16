@@ -19,7 +19,7 @@ class CreateHabitacionsTable extends Migration
             $table->string('nombre', 100);
             $table->integer('capacidad');
             $table->integer('en_uso');
-            $table->boolean('disponible')->default(1);
+            $table->boolean('disponible')->default(true);
             $table->timestamps();
 
             $table->foreign('id_area')
