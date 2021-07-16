@@ -37,7 +37,7 @@ Route::prefix('auth')->group(function () {
 
 // Centro routes
 Route::prefix('centros')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::get('/', 'CentroController@index');
         Route::get('/{centro}', 'CentroController@show');
         Route::post('/', 'CentroController@store');
@@ -45,13 +45,13 @@ Route::prefix('centros')->group(function () {
         Route::delete('/{centro}', 'CentroController@destroy');
         Route::get('/{centro}/areas', 'CentroController@areas');
         Route::get('/{centro}/director', 'CentroController@director'); //test this!
-    });
+    // });
 });
 
 
 // Area routes
 Route::prefix('areas')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::get('/', 'AreaController@index');
         Route::get('/{area}', 'AreaController@show');
         Route::post('/', 'AreaController@store');
@@ -59,20 +59,20 @@ Route::prefix('areas')->group(function () {
         Route::delete('/{area}', 'AreaController@destroy');
         Route::get('/areas/{area}/habitaciones', 'AreaController@habitaciones');
         Route::get('/areas/{area}/habitaciones-disponibles', 'AreaController@habitaciones_disponibles');
-    });
+    // });
 });
 
 
 // Habitacion routes - Puesto manual porque el resource recibe habitacione en vez de habitaciones
 Route::prefix('habitaciones')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::get('/', 'HabitacionController@index');
         Route::get('/{habitacion}', 'HabitacionController@show');
         Route::post('/', 'HabitacionController@store');
         Route::put('/{habitacion}', 'HabitacionController@update');
         Route::delete('/{habitacion}', 'HabitacionController@destroy');
         Route::get('/{habitacion}/ingresados', 'HabitacionController@ingresados');
-    });
+    // });
 });
 
 
@@ -92,29 +92,29 @@ Route::prefix('pacientes')->group(function () {
 
 //PacienteApp routes
 Route::prefix('pacientes')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::post('/apps', 'PacienteAppController@store');
         Route::put('/apps/{paciente_app}', 'PacienteAppController@update');
         Route::delete('/apps/{paciente_app}', 'PacienteAppController@destroy');
-    });
+    // });
 });
 
 //PacienteContacto routes
 Route::prefix('pacientes')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::post('/contacto', 'PacienteContactoController@store');
         Route::put('/contacto/{paciente_contacto}', 'PacienteContactoController@update');
         Route::delete('/contacto/{paciente_contacto}', 'PacienteContactoController@destroy');
-    });
+    // });
 });
 
 //PacienteSintomas routes
 Route::prefix('pacientes')->group(function () {
-    Route::middleware('auth:api')->group(function() {
+    // Route::middleware('auth:api')->group(function() {
         Route::post('/sintomas', 'PacienteSintomasController@store');
         Route::put('/sintomas/{paciente_sintomas}', 'PacienteSintomasController@update');
         Route::delete('/sintomas/{paciente_sintomas}', 'PacienteSintomasController@destroy');
-    });
+    // });
 });
 
 //Nomencladores
