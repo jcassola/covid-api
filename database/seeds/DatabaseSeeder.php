@@ -19,43 +19,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-<<<<<<< HEAD
         $this->call(PacienteCategoriasTableSeeder::class);
         $this->call(TipoEstadoSaludTableSeeder::class);
         $this->call(TipoEstadoSistemaTableSeeder::class);
         $this->call(TipoTestAntigenosTableSeeder::class);
         $this->call(CategoriaAreaTableSeeder::class);
 
-=======
         $this->call(ProvinciaTableSeeder::class);
         $this->call(MunicipioTableSeeder::class);
         $this->call(AreaSaludTableSeeder::class);
-        // $this->call(CentrosTableSeeder::class);
+
         // $this->call(AreasTableSeeder::class);
->>>>>>> origin/feature/seeders
+        // $this->call(CentrosTableSeeder::class);
 
 
-        // Create 10 records of centros
-        $centros = factory(Centro::class, 10)->create()->each(function ($centro) {
-            // Seed the relation with 3 areas
-            $centro->areas()->saveMany(factory(Area::class, 5)->make());
-        });
-
-        //Esto es para crear las habitaciones dentro de las areas asociadas a los centros.
-        //Deberia pinchar, pero no lo hace :v
-        // $centros->each(function ($centro){
-        //     $centro->areas->each(function ($area){
-        //         $area->habitaciones()->saveMany(factory(Habitacion::class, 5)->make());
-        //     });
-        // });
-
-        //Para llenar las tablas de pacientes. Hay que definir los factories
-        // factory(DatosPaciente::class, 10)->create()->each(function ($paciente) {
-        //     // Seed the relation with 10 patients
-        //     $paciente->apps()->save(factory(PacienteApp::class)->make());
-        //     $paciente->sintomas()->save(factory(PacienteSintomas::class)->make());
-        //     $paciente->contactos()->save(factory(PacienteContacto::class)->make());
-        // });
 
     }
 }

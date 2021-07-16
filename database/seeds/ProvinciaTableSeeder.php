@@ -12,7 +12,6 @@ class ProvinciaTableSeeder extends Seeder
      */
     public function run()
     {
-
         $data = [
             [
                 'nombre' => 'PINAR DEL RIO',
@@ -111,7 +110,5 @@ class ProvinciaTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
         ];
-
-        DB::table('provincia')->insert($data);
     }
 }
