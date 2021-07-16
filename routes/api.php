@@ -1,8 +1,11 @@
 <?php
 
+use App\AreaSalud;
 use App\CategoriaArea;
 use App\Http\Controllers\HabitacionController;
+use App\Municipio;
 use App\PacienteCategoria;
+use App\Provincia;
 use App\TipoEstadoSalud;
 use App\TipoEstadoSistema;
 use App\TipoTestAntigeno;
@@ -145,20 +148,20 @@ Route::prefix('nomenclador')->group(function () {
     });
 
 
-    //Provincia
-    // Route::get('/provincia', function () {
-    //     return Provincia::select('id', 'nombre')->get();
-    // });
+    // Provincia
+    Route::get('/provincia', function () {
+        return Provincia::select('id', 'nombre')->get();
+    });
 
-    // //Muncipio
-    // Route::get('/municipio/{id}', function ($id) {
-    //     return Municipio::where('id_provincia', '=', $id)->select('id', 'nombre')->get();
-    // });
+    //Muncipio
+    Route::get('/municipio/{id}', function ($id) {
+        return Municipio::where('id_provincia', '=', $id)->select('id', 'nombre')->get();
+    });
 
-    //AreaSalud
-    // Route::get('/salud/{id}', function ($id) {
-    //     return AreaSalud::where('id_municipio', '=', $id)->select('id', 'nombre')->get();
-    // });
+    // AreaSalud
+    Route::get('/salud/{id}', function ($id) {
+        return AreaSalud::where('id_municipio', '=', $id)->select('id', 'nombre')->get();
+    });
 });
 
 
