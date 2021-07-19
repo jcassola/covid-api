@@ -295,7 +295,7 @@ class AreaSaludTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'nombre' => 'Manacas',
+                'nombre' => 'Nguyen Van Troy',
                 'codigo' => 197,
                 'tipo' => 14,
                 'separador' => '-',
