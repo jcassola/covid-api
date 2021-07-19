@@ -17,7 +17,7 @@ class CreateDatosPacientesTable extends Migration
             $table->bigIncrements('id_paciente')->autoIncrement();
             $table->unsignedBigInteger('id_ingresado')->nullable();
             $table->unsignedBigInteger('id_area')->default(1);
-            $table->boolean('test_antigeno')->default(false);
+            $table->integer('test_antigeno')->nullable();
             $table->boolean('vacunado')->default(false);
             $table->string('nombre', 100);
             $table->string('apellidos', 100);
