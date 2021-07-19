@@ -48,13 +48,13 @@ class DatosPacienteController extends Controller
         $validator = Validator::make($data, [
             'nombre' => 'required',
             'apellidos' => 'required',
-            'edad' => 'required|',
-            'ci' => 'required|unique:datos_paciente',
+            'edad' => 'required',
+            'ci' => 'required|size:11|unique:datos_paciente',
             'sexo' => 'required',
             'categoria' => 'required',
-            'direccion' => 'required|',
-            'municipio' => 'required|',
-            'provincia' => 'required|'
+            'direccion' => 'required',
+            'municipio' => 'required',
+            'provincia' => 'required'
         ]);
 
         if($validator->fails()){
@@ -78,26 +78,26 @@ class DatosPacienteController extends Controller
             $paciente->cmf = $request->input('cmf');
             $paciente->remite_caso = $request->input('remite_caso');
             $paciente->hospital = $request->input('hospital');
-            $paciente->embarazada = $request->input('embarazada') ?? 'false';
+            $paciente->embarazada = $request->input('embarazada') ?? false;
             $paciente->ninho = $request->input('ninho') ?? 'false';
-            $paciente->estado_salud = $request->input('estado_salud') ?? '1';
-            $paciente->categoria = $request->input('categoria') ?? '1';
-            $paciente->id_area = $request->input('id_area') ?? '1';
-            $paciente->estado_sistema = $request->input('estado_sistema') ?? '1';
-            $paciente->trabajador_salud = $request->input('trabajador_salud') ?? 'false';
-            $paciente->test_antigeno = $request->input('test_antigeno') ?? '1';
-            $paciente->vacunado = $request->input('vacunado') ?? 'false';
+            $paciente->estado_salud = $request->input('estado_salud') ?? 1;
+            $paciente->categoria = $request->input('categoria') ?? 1;
+            $paciente->id_area = $request->input('id_area') ?? 1;
+            $paciente->estado_sistema = $request->input('estado_sistema') ?? 1;
+            $paciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
+            $paciente->test_antigeno = $request->input('test_antigeno') ?? null;
+            $paciente->vacunado = $request->input('vacunado') ?? false;
 
             $paciente->save();
 
             //Apps
             $app = new PacienteApp();
-            $app->hipertension = $data['hipertension'] ?? 'false';
-            $app->diabetes = $data['diabetes'] ?? 'false';
-            $app->asma = $data['asma'] ?? 'false';
-            $app->obesidad = $data['obesidad'] ?? 'false';
-            $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? 'false';
-            $app->oncologia = $data['oncologia'] ?? 'false';
+            $app->hipertension = $data['hipertension'] ?? false;
+            $app->diabetes = $data['diabetes'] ?? false;
+            $app->asma = $data['asma'] ?? false;
+            $app->obesidad = $data['obesidad'] ?? false;
+            $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? false;
+            $app->oncologia = $data['oncologia'] ?? false;
             $app->otros_apps = $data['otros_apps'] ?? '';
 
             $app->paciente()->associate($paciente)->save();
@@ -129,14 +129,14 @@ class DatosPacienteController extends Controller
             //Sintomas
             $sintomas = new PacienteSintomas();
             $sintomas->fecha_sintomas = $data['fecha_sintomas'] ?? null;
-            $sintomas->fiebre = $data['fiebre'] ?? 'false';
-            $sintomas->rinorrea = $data['rinorrea'] ?? 'false';
-            $sintomas->congestion_nasal = $data['congestion_nasal'] ?? 'false';
-            $sintomas->tos = $data['tos'] ?? 'false';
-            $sintomas->expectoracion = $data['expectoracion'] ?? 'false';
-            $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? 'false';
-            $sintomas->cefalea = $data['cefalea'] ?? 'false';
-            $sintomas->dolor_garganta = $data['dolor_garganta'] ?? 'false';
+            $sintomas->fiebre = $data['fiebre'] ?? false;
+            $sintomas->rinorrea = $data['rinorrea'] ?? false;
+            $sintomas->congestion_nasal = $data['congestion_nasal'] ?? false;
+            $sintomas->tos = $data['tos'] ?? false;
+            $sintomas->expectoracion = $data['expectoracion'] ?? false;
+            $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? false;
+            $sintomas->cefalea = $data['cefalea'] ?? false;
+            $sintomas->dolor_garganta = $data['dolor_garganta'] ?? false;
             $sintomas->otros_sint = $data['otros_sint'] ?? '';
 
             $sintomas->paciente()->associate($paciente)->save();
@@ -161,22 +161,6 @@ class DatosPacienteController extends Controller
      */
     public function show(DatosPaciente $datosPaciente)
     {
-        // $id_categoria = $datosPaciente->categoria;
-        // $id_antigeno = $datosPaciente->test_antigeno;
-        // $id_salud = $datosPaciente->estado_salud;
-        // $id_sistema = $datosPaciente->estado_sistema;
-        // $id_salud = $datosPaciente->id_salud;
-
-        // $categoria = PacienteCategoria::where('id', $id_categoria)->first()->nombre ?? null;
-        // $antigeno = TipoTestAntigeno::where('id', $id_antigeno)->first()->nombre ?? null;
-        // $salud = TipoEstadoSalud::where('id', $id_salud)->first()->nombre ?? null;
-        // $sistema = TipoEstadoSistema::where('id', $id_sistema)->first()->nombre ?? null;
-
-        // $datosPaciente->categoria = $categoria;
-        // $datosPaciente->test_antigeno = $antigeno;
-        // $datosPaciente->estado_salud = $salud;
-        // $datosPaciente->estado_sistema = $sistema;
-
         return response()->json([ 'paciente' => new
                         DatosPacienteResource($datosPaciente), 'message' => 'Success'],
                         200);
@@ -225,15 +209,15 @@ class DatosPacienteController extends Controller
             $datosPaciente->cmf = $request->input('cmf');
             $datosPaciente->remite_caso = $request->input('remite_caso');
             $datosPaciente->hospital = $request->input('hospital');
-            $datosPaciente->embarazada = $request->input('embarazada') ?? 'false';
-            $datosPaciente->ninho = $request->input('ninho') ?? 'false';
-            $datosPaciente->estado_salud = $request->input('estado_salud') ?? '1';
-            $datosPaciente->categoria = $request->input('categoria') ?? '1';
-            $datosPaciente->id_area = $request->input('id_area') ?? '1';
-            $datosPaciente->estado_sistema = $request->input('estado_sistema') ?? '1';
-            $datosPaciente->trabajador_salud = $request->input('trabajador_salud') ?? 'false';
-            $datosPaciente->test_antigeno = $request->input('test_antigeno') ?? '1';
-            $datosPaciente->vacunado = $request->input('vacunado') ?? 'false';
+            $datosPaciente->embarazada = $request->input('embarazada') ?? false;
+            $datosPaciente->ninho = $request->input('ninho') ?? false;
+            $datosPaciente->estado_salud = $request->input('estado_salud') ?? 1;
+            $datosPaciente->categoria = $request->input('categoria') ?? 1;
+            $datosPaciente->id_area = $request->input('id_area') ?? 1;
+            $datosPaciente->estado_sistema = $request->input('estado_sistema') ?? 1;
+            $datosPaciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
+            $datosPaciente->test_antigeno = $request->input('test_antigeno') ?? null;
+            $datosPaciente->vacunado = $request->input('vacunado') ?? false;
 
             $datosPaciente->save();
 
@@ -241,12 +225,12 @@ class DatosPacienteController extends Controller
             //Apps
             // $app = new PacienteApp();
             $app = $datosPaciente->apps()->first();
-            $app->hipertension = $data['hipertension'] ?? 'false';
-            $app->diabetes = $data['diabetes'] ?? 'false';
-            $app->asma = $data['asma'] ?? 'false';
-            $app->obesidad = $data['obesidad'] ?? 'false';
-            $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? 'false';
-            $app->oncologia = $data['oncologia'] ?? 'false';
+            $app->hipertension = $data['hipertension'] ?? false;
+            $app->diabetes = $data['diabetes'] ?? false;
+            $app->asma = $data['asma'] ?? false;
+            $app->obesidad = $data['obesidad'] ?? false;
+            $app->insuficiencia_renal = $data['insuficiencia_renal'] ?? false;
+            $app->oncologia = $data['oncologia'] ?? false;
             $app->otros_apps = $data['otros_apps'] ?? '';
 
             $app->save();
@@ -274,14 +258,14 @@ class DatosPacienteController extends Controller
             //Sintomas
             $sintomas = $datosPaciente->sintomas()->first();
             $sintomas->fecha_sintomas = $data['fecha_sintomas'] ?? null;
-            $sintomas->fiebre = $data['fiebre'] ?? 'false';
-            $sintomas->rinorrea = $data['rinorrea'] ?? 'false';
-            $sintomas->congestion_nasal = $data['congestion_nasal'] ?? 'false';
-            $sintomas->tos = $data['tos'] ?? 'false';
-            $sintomas->expectoracion = $data['expectoracion'] ?? 'false';
-            $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? 'false';
-            $sintomas->cefalea = $data['cefalea'] ?? 'false';
-            $sintomas->dolor_garganta = $data['dolor_garganta'] ?? 'false';
+            $sintomas->fiebre = $data['fiebre'] ?? false;
+            $sintomas->rinorrea = $data['rinorrea'] ?? false;
+            $sintomas->congestion_nasal = $data['congestion_nasal'] ?? false;
+            $sintomas->tos = $data['tos'] ?? false;
+            $sintomas->expectoracion = $data['expectoracion'] ?? false;
+            $sintomas->dificultad_respiratoria = $data['dificultad_respiratoria'] ?? false;
+            $sintomas->cefalea = $data['cefalea'] ?? false;
+            $sintomas->dolor_garganta = $data['dolor_garganta'] ?? false;
             $sintomas->otros_sint = $data['otros_sint'] ?? '';
 
             $sintomas->save();
