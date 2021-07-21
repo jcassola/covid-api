@@ -35,7 +35,7 @@ class DatosPacienteResource extends JsonResource
             'ninho' => $this->ninho,
             'test_antigeno' => $this->test_antigeno,
             'vacunado' => $this->vacunado,
-            'area_salud' => $this->id_area,
+            'area_salud' => $this->area_salud,
             'municipio' => $this->municipio,
             'provincia' => $this->provincia,
             // 'created_at' => $this->created_at,
