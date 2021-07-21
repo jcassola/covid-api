@@ -110,8 +110,6 @@ class ProvinciaTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
         ];
-
         DB::table('provincia')->insert($data);
-
     }
 }

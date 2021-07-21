@@ -16,7 +16,7 @@ class CreateAreaSaludTable extends Migration
         Schema::create('area_salud', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',100);
-            $table->integer('codigo');
+            $table->string('codigo',10);
             $table->integer('tipo');
             $table->string('separador',10);
             $table->unsignedBigInteger('id_municipio');

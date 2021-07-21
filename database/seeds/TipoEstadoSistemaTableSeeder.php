@@ -19,6 +19,15 @@ class TipoEstadoSistemaTableSeeder extends Seeder
             'nombre' => 'PENDIENTE INGRESO',
         ]);
         factory(TipoEstadoSistema::class)->create([
+            'nombre' => 'PENDIENTE INGRESO REVISADO',
+        ]);
+        factory(TipoEstadoSistema::class)->create([
+            'nombre' => 'ASIGNADO UBICACIÓN',
+        ]);
+        factory(TipoEstadoSistema::class)->create([
+            'nombre' => 'EN TRANSPORTACIÓN',
+        ]);
+        factory(TipoEstadoSistema::class)->create([
             'nombre' => 'INGRESADO',
         ]);
         factory(TipoEstadoSistema::class)->create([
