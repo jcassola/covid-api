@@ -36,8 +36,8 @@ class AreaController extends Controller
 
         $validator = Validator::make($data, [
             'id_centro' => 'required',
-            'nombre' => 'required|unique:areas',
-            'categoria' => 'required|',
+            'nombre' => 'required',
+            'categoria' => 'required',
         ]);
 
         if($validator->fails()){
