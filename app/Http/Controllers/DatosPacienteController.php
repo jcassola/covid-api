@@ -83,6 +83,7 @@ class DatosPacienteController extends Controller
             $paciente->vacunado = $request->input('vacunado') ?? false;
             $paciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
             //FK
+            $paciente->riesgo = $request->input('riesgo') ?? 1;
             $paciente->estado_salud = $request->input('estado_salud') ?? 1;
             $paciente->categoria = $request->input('categoria') ?? 1;
             $paciente->area_salud = $request->input('area_salud') ?? 1;
@@ -215,6 +216,7 @@ class DatosPacienteController extends Controller
             $datosPaciente->vacunado = $request->input('vacunado') ?? false;
             $datosPaciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
             //FK
+            $datosPaciente->riesgo = $request->input('riesgo') ?? 1;
             $datosPaciente->estado_salud = $request->input('estado_salud') ?? 1;
             $datosPaciente->categoria = $request->input('categoria') ?? 1;
             $datosPaciente->area_salud = $request->input('area_salud') ?? 1;

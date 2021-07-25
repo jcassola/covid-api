@@ -8,6 +8,7 @@ use App\PacienteCategoria;
 use App\Provincia;
 use App\TipoEstadoSalud;
 use App\TipoEstadoSistema;
+use App\TipoRiesgoCategoria;
 use App\TipoTestAntigeno;
 use Illuminate\Http\Request;
 
@@ -147,6 +148,10 @@ Route::prefix('nomenclador')->group(function () {
         return CategoriaArea::select('id', 'nombre')->get();
     });
 
+    //RiesgoCategoria
+    Route::get('/riesgo-categoria', function () {
+        return TipoRiesgoCategoria::select('id', 'nombre')->get();
+    });
 
     // Provincia
     Route::get('/provincia', function () {

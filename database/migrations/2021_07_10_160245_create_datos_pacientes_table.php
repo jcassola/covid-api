@@ -32,6 +32,7 @@ class CreateDatosPacientesTable extends Migration
             $table->boolean('ninho')->default(false);
             $table->boolean('trabajador_salud')->default(false);
             //FK
+            $table->integer('riesgo')->nullable();
             $table->integer('test_antigeno')->nullable();
             $table->unsignedBigInteger('area_salud')->default(1);
             $table->integer('categoria')->nullable();
