@@ -16,6 +16,8 @@ class CreateDatosPacientesTable extends Migration
         Schema::create('datos_paciente', function (Blueprint $table) {
             $table->bigIncrements('id_paciente')->autoIncrement();
             $table->unsignedBigInteger('id_ingresado')->nullable();
+            $table->unsignedBigInteger('id_area')->default(1);
+            $table->integer('test_antigeno')->nullable();
             $table->boolean('vacunado')->default(false);
             $table->string('nombre', 100);
             $table->string('apellidos', 100);
@@ -32,9 +34,12 @@ class CreateDatosPacientesTable extends Migration
             $table->boolean('ninho')->default(false);
             $table->boolean('trabajador_salud')->default(false);
             //FK
+<<<<<<< HEAD
             $table->integer('riesgo')->nullable();
             $table->integer('test_antigeno')->nullable();
             $table->unsignedBigInteger('area_salud')->default(1);
+=======
+>>>>>>> parent of 7bb4497 (change id_area for area_salud)
             $table->integer('categoria')->nullable();
             $table->integer('estado_salud')->nullable();
             $table->integer('estado_sistema')->nullable();
