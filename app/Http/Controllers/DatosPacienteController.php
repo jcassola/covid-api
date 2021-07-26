@@ -80,13 +80,11 @@ class DatosPacienteController extends Controller
             $paciente->hospital = $request->input('hospital');
             $paciente->embarazada = $request->input('embarazada') ?? false;
             $paciente->ninho = $request->input('ninho') ?? 'false';
-<<<<<<< HEAD
+
             $paciente->vacunado = $request->input('vacunado') ?? false;
             $paciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
             //FK
             $paciente->riesgo = $request->input('riesgo') ?? 1;
-=======
->>>>>>> parent of 7bb4497 (change id_area for area_salud)
             $paciente->estado_salud = $request->input('estado_salud') ?? 1;
             $paciente->categoria = $request->input('categoria') ?? 1;
             $paciente->id_area = $request->input('id_area') ?? 1;
@@ -218,17 +216,11 @@ class DatosPacienteController extends Controller
             $datosPaciente->hospital = $request->input('hospital');
             $datosPaciente->embarazada = $request->input('embarazada') ?? false;
             $datosPaciente->ninho = $request->input('ninho') ?? false;
-<<<<<<< HEAD
-            $datosPaciente->vacunado = $request->input('vacunado') ?? false;
-            $datosPaciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
-            //FK
-            $datosPaciente->riesgo = $request->input('riesgo') ?? 1;
-=======
->>>>>>> parent of 7bb4497 (change id_area for area_salud)
             $datosPaciente->estado_salud = $request->input('estado_salud') ?? 1;
             $datosPaciente->categoria = $request->input('categoria') ?? 1;
             $datosPaciente->id_area = $request->input('id_area') ?? 1;
             $datosPaciente->estado_sistema = $request->input('estado_sistema') ?? 1;
+            $datosPaciente->riesgo = $request->input('riesgo') ?? 1;
             $datosPaciente->trabajador_salud = $request->input('trabajador_salud') ?? false;
             $datosPaciente->test_antigeno = $request->input('test_antigeno') ?? null;
             $datosPaciente->vacunado = $request->input('vacunado') ?? false;
