@@ -23,6 +23,7 @@ class DatosPaciente extends Model
         'remite_caso',
         'hospital',
         'estado_salud',
+        'area_salud',
         'estado_sistema',
         'trabajador_salud',
     ];
